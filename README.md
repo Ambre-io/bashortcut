@@ -3,11 +3,12 @@
 Funny way to use Linux, increasing my happiness ☀️ with:
 - a turnkey setup script
 - a turnkey cleanup script
-- many aliases
+- many aliases, `oops` if u forget
 - a custom bash prompt
-- and a tmux config&use boilerplate
+- a tmux config&use boilerplate
+- weird commands
 
-**Philosofy**: automate repetitions to decrease charge and increase fluidity.
+**Philosofy**: automate and shortcut repetitions to decrease charge and increase fluidity.
 
 ## Install
 
