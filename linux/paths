@@ -1,0 +1,29 @@
+#!/bin/bash
+
+# Bashortcut with Linux
+
+BASHORTCUT="${BASHORTCUT_PROJECTS_DIR}/bashortcut"
+
+# Needed for setup
+TMUXDIR="${BASHORTCUT}/tmux"
+CONF=".tmux.conf"
+TMUXCONF_SOURCE="${TMUXDIR}/${CONF}" # tmux configuration file
+TMUXCONF_TARGET="${HOME}/${CONF}" # create by setup.sh
+BASHRC="${HOME}/.bashrc" # setup front door
+LINUX_ENV_DIR="${BASHORTCUT}/linux/environment" # current environment
+BASH_PROFILE="${LINUX_ENV_DIR}/.bash_profile" # main bash file
+
+# Security
+IE=0
+[ ! -d "${BASHORTCUT}" ] && echo "Directory ${BASHORTCUT} DOES NOT exists. You should clone https://github.com/guiklimek/bashortcut.git." && IE=1
+[ ! -d "${TMUXDIR}" ] && echo "Directory ${TMUXDIR} DOES NOT exists." && IE=1
+[ ! -f "${TMUXCONF_SOURCE}" ] && echo "Missing file ${TMUXCONF_SOURCE}." && IE=1
+[ ! -d "${LINUX_ENV_DIR}" ] && echo "Directory ${LINUX_ENV_DIR} DOES NOT exists." && IE=1
+[ ! -f "${BASH_PROFILE}" ] && echo "Missing file ${BASH_PROFILE}." && IE=1
+[ ! -f "${BASHRC}" ] && echo "warning: Missing file ${BASHRC}."
+
+if [ "${IE}" -eq 1 ]; then
+    echo "It seems you need to check your paths."
+    exit 1
+fi
+

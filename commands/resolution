@@ -1,0 +1,17 @@
+#! /bin/bash
+
+if [ ${#} -lt 1 ]; then
+	resolution="1920x1080"
+else
+	resolution=${1}
+	echo "Using : ${resolution}"
+fi
+
+
+xrandr -q | grep \* | grep ${resolution} > /dev/null
+if [ ${?} -eq 1 ]; then
+	echo "Changing diplspay to ${resolution}."
+	xrandr --newmode "${resolution}"  173.00  1920 2048 2248 2576  1080 1083 1088 1120 -hsync +vsync
+	xrandr --addmode Virtual1 "${resolution}"
+	xrandr --output Virtual1 --mode "${resolution}"
+fi

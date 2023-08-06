@@ -1,0 +1,50 @@
+#!/bin/bash
+
+# Tmux session name
+SESSION_NAME="example"
+
+#########################
+# If already up, attach.
+#########################
+
+if ! tmux attach-session -d -t ${SESSION_NAME}; then
+	exit
+fi
+
+#########################
+# Create the session
+#########################
+
+# with the name
+tmux new-session -d -s ${SESSION_NAME}
+
+# and the first terminal tab: generally I use it for development tools
+tmux rename-window "tools"
+tmux send-keys "webstorm &" C-m
+tmux send-keys "firefox &" C-m
+tmux send-keys "gedit ${HOME}/notes &" C-m
+
+# then a another terminal tab called window : generally the main repository I work on
+tmux new-window -n "repository"
+tmux send-keys "#cd ${BASHORTCUT_PROJECTS_DIR}/repository" C-m
+tmux send-keys "#git status" C-m  # quick look on current changes
+
+# then another one : generally a docker
+tmux new-window -n "up"
+tmux send-keys "cd ${BASHORTCUT_PROJECTS_DIR}/repository" C-m
+tmux send-keys "dccup -d" C-m
+
+# then another one : generally a watcher
+tmux new-window -n "dev"
+tmux send-keys "cd ${BASHORTCUT_PROJECTS_DIR}/repository/src" C-m
+tmux send-keys "npm run dev" C-m
+
+# then how many you want, I try to never go over 7 tabs
+
+# reminder of the right things
+tmux new-window -n "work"
+tmux send-keys "zen" C-m
+tmux send-keys "cd ${BASHORTCUT}" C-m
+
+# When all is done, attach.
+tmux attach-session -t ${SESSION_NAME}

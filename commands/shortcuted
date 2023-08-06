@@ -1,0 +1,17 @@
+#! /bin/bash
+
+if [ ${#} -lt 1 ]; then
+	echo "Use: shortcuted <runscript> [<scriptname>]"
+else
+	PATH=$(pwd)
+	FILEPATH="${PATH}/${1}"
+	if [ ! -f "${FILEPATH}" ]; then
+		echo "Please check the path: ${FILEPATH}"
+		exit 1
+	fi
+	if [ ${#} -gt 1 ]; then
+		ln -s "${FILEPATH}" "/usr/local/bin/${2}"
+	else
+		ln -s "${FILEPATH}" "/usr/local/bin/"
+	fi
+fi
