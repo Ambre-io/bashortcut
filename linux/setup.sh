@@ -1,14 +1,14 @@
 #! /bin/bash -e
 
 # # # # # # # # # # # # # # # # # # # # # # # #
-#	     SETUP LINUX BASHORTCUT           #
+#	       SETUP LINUX BASHORTCUT             #
 # # # # # # # # # # # # # # # # # # # # # # # #
 
 cat <<EOF
 
-##########################################
-*** Setting up BASHORTCUT environement ***
-##########################################
+#########################################
+*** Setting up BASHORTCUT environment ***
+#########################################
 
 EOF
 
