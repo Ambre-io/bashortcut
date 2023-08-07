@@ -141,8 +141,8 @@ alias adminpg="sudo -u adminpg bash"
 
 alias d="deactivate"
 
-alias p="python3.8"
-alias zen="python3 -c 'import this'"
+alias p="python3"
+alias zen="p -c 'import this'"
 
 
 ########################################
