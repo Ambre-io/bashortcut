@@ -7,7 +7,7 @@ SESSION_NAME="example"
 # If already up, attach.
 #########################
 
-if ! tmux attach-session -d -t ${SESSION_NAME}; then
+if tmux attach-session -d -t ${SESSION_NAME}; then
 	exit
 fi
 
