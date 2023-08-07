@@ -44,3 +44,11 @@ A Linux environment, based on the `~/.bashrc`:
 - Change screen resolution:`sudo ln -s ${BASHORTCUT}/commands/resolution /usr/local/bin`
 - Change git user: `sudo ln -s ${BASHORTCUT}/commands/change-user-git /usr/local/bin`
 - The command that `ln -s` for us: `sudo ln -s ${BASHORTCUT}/commands/shortcuted /usr/local/bin`...
+
+## Next steps
+
+- docker aliases should evolve
+- integrate the terminal new profile 
+  - mainly colors and font size 
+  - don't override the default one
+- redo the mac environment based on zsh
