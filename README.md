@@ -1,6 +1,6 @@
 # BASHORTCUT
 
-Funny way to use Linux, increasing my happiness ☀️ with:
+Funny way to use Linux, increasing happiness ☀️ with:
 - Setup & Cleanup
 - Bash Aliases
 - Bash Prompt
