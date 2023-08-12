@@ -7,8 +7,7 @@ else
 	echo "Using : ${resolution}"
 fi
 
-
-xrandr -q | grep \* | grep ${resolution} > /dev/null
+xrandr -q | grep "${resolution}" > /dev/null
 if [ ${?} -eq 1 ]; then
 	echo "Changing diplspay to ${resolution}."
 	xrandr --newmode "${resolution}"  173.00  1920 2048 2248 2576  1080 1083 1088 1120 -hsync +vsync
