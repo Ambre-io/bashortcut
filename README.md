@@ -29,6 +29,8 @@ A Linux environment, based on the `~/.bashrc`:
 - Execute the `setup.sh` script to **install** BASHORTCUT environment
 - Execute the `cleanenv.sh` script to **remove** BASHORTCUT environment (care of your `~/notes`)
 
+It includs: a bash prompt, bash aliases, git, tmux, docker and a tmux configuration.
+
 ## 3. Tmux
 ###### (~/Projects/bashortcut/tmux)
 
