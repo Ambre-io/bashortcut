@@ -30,29 +30,30 @@ BASHRC="${HOME}/.bashrc"
 
 [ ! -f "${BASHRC}" ] && echo "Creating file ${BASHRC}" && echo "#! /bin/bash" >>"${BASHRC}"
 
-command -v tmux
-[ "${?}" -eq 1 ] && sudo apt-get install tmux
-
 ############################################################
 # Intall Utils
 ############################################################
 
-sudo apt install git tmux gedit
+sudo apt install git tmux
+
+read -p "Do you want to install gedit? (y/n) " -n 1 -r
+if [[ ${REPLY} =~ ^[Yy]$ ]]; then
+    sudo apt install gedit
+fi
 
 ############################################################
 # Install Docker
 ############################################################
 
-systemctl is-active --quiet docker
-if [ ${?} -ne 0 ]; then
+if ! systemctl is-active --quiet docker; then
 	echo "Docker Engine repository preparation & installation"
 	echo "Maybe you should look if something change here: https://docs.docker.com/engine/install/ubuntu/"
 	sudo apt-get install ca-certificates curl gnupg
 	sudo mkdir -m 0755 -p /etc/apt/keyrings
 	curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
 	echo \
-		"deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
-		"$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | \
+		"deb [arch=\"$(dpkg --print-architecture)\" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+		\"$(. /etc/os-release && echo "$VERSION_CODENAME")\" stable" | \
 		sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 	if { sudo apt-get update 2>&1 || echo E: update failed; } | grep -q '^[WE]:'; then
 		sudo chmod a+r /etc/apt/keyrings/docker.gpg
@@ -60,7 +61,7 @@ if [ ${?} -ne 0 ]; then
 	fi
 
 	sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
-	sudo usermod -aG docker ${USER}
+	sudo usermod -aG docker "${USER}"
 fi
 
 ############################################################

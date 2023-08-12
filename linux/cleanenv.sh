@@ -11,11 +11,9 @@ cat <<EOF
 EOF
 
 read -p "Are you sure to clean BASHORTCUT (y/n)? " -n 1 -r
-if [[ ! $REPLY =~ ^[Yy]$ ]]
-then
+if [[ ! ${REPLY} =~ ^[Yy]$ ]]; then
     exit 0
 fi
-
 
 ############################################################
 # Including paths constants

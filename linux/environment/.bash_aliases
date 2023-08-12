@@ -98,26 +98,26 @@ alias gca="git commit --amend"
 alias gp="git push"
 alias gl="git log --pretty=oneline"
 alias glg="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
-
 alias gbl="git branch -a"
 alias grl="git remote -v"
-
 alias gfp="git fetch --prune"
 alias greset="git reset HEAD"
-
-#alias sug="more $HOME/.gitconfig | head -3"
-#alias cug="change-user-git"
-
 alias m="git diff --shortstat"
-
 alias gfa="gagst && gca && gp -f"
 
+# Config
+alias gcl="git config --list"
+alias gcg="git config --global"
+alias gcuname="gcg user.name"
+alias gcuemail="gcg user.email"
+
+# Delete local and remote branch
 function gbd(){
 	if [[ ${#} -lt 1 ]]; then
 		echo "Use: gbd <branch name>"
 	else
-		read -p "Confirm you delete the branch ${1} (y/n): " confirm
-		if [ "${confirm}" = "y" || "${confirm}" = "ye" || "${confirm}" = "yes" ]; then
+		read -p "Confirm you delete the branch ${1} (y/n): " CONFIRM
+		if [ "${CONFIRM}" = "y" || "${CONFIRM}" = "ye" || "${CONFIRM}" = "yes" ]; then
 			git branch -D ${1}
 			gp origin --delete ${1}
 		fi
