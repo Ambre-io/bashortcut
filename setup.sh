@@ -8,24 +8,31 @@ cat <<EOF
 
 EOF
 
-# Creating the main folder
-export BASHORTCUT_PROJECTS_DIR="${HOME}/Projects"
-[ ! -d "${BASHORTCUT_PROJECTS_DIR}" ] && mkdir -p "${HOME}/Projects"
-
 ########################################
 # INCLUDE PATHS
 ########################################
+SETUP=$(command -v -- "${0}")
+echo "SETUP.SH: SETUP=${SETUP}"
+SETUPPATH=$(cd -P -- "$(dirname -- "${SETUP}")" && pwd -P)
+#SETUPPATH="${0}"
+echo "SETUP.SH: SETUPPATH=${SETUPPATH}"
+[ ! -f "${SETUPPATH}" ] && echo "File ${SETUPPATH} DOES NOT exists." && exit 1
 
-SETUP_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
-. "${SETUP_DIR}/linux/paths"
+PATHS="${SETUPPATH}/linux/paths"
+echo "SETUP.SH: PATHS=${PATHS}"
+[ ! -f "${PATHS}" ] && echo "File ${PATHS} DOES NOT exists." exit 1
 
-[ ! -f "${BASHRC}" ] && echo "Creating file ${BASHRC}" && echo "#! /bin/bash" >>"${BASHRC}"
+. PATHS
+
+[ ! -d "${BASHORTCUT_PROJECTS_DIR}" ] && mkdir -p "${HOME}/Projects"
+[ ! -f "${BASHRC}" ] && echo "Creating file ${BASHRC}" && echo "#! /bin/bash -e" >>"${BASHRC}"
 
 ########################################
 # INSTALL UTILS
 ########################################
 
-sudo apt install git tmux
+[ ! -x "$(command -v git)" ] && sudo apt install git
+[ ! -x "$(command -v tmux)" ] && sudo apt install tmux
 
 read -p "Do you want to install gedit? (y/n) " -n 1 -r
 if [[ ${REPLY} =~ ^[Yy]$ ]]; then
@@ -37,22 +44,25 @@ fi
 ########################################
 
 if ! systemctl is-active --quiet docker; then
-	echo "Docker Engine repository preparation & installation"
-	echo "Maybe you should look if something change here: https://docs.docker.com/engine/install/ubuntu/"
-	sudo apt-get install ca-certificates curl gnupg
-	sudo mkdir -m 0755 -p /etc/apt/keyrings
-	curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
-	echo \
-		"deb [arch=\"$(dpkg --print-architecture)\" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
-		\"$(. /etc/os-release && echo "$VERSION_CODENAME")\" stable" | \
-		sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-	if { sudo apt-get update 2>&1 || echo E: update failed; } | grep -q '^[WE]:'; then
-		sudo chmod a+r /etc/apt/keyrings/docker.gpg
-		sudo apt-get update
-	fi
+    read -p "Do you want to install docker? (y/n) " -n 1 -r
+    if [[ ${REPLY} =~ ^[Yy]$ ]]; then
+        echo "Docker Engine repository preparation & installation"
+        echo "Maybe you should look if something change here: https://docs.docker.com/engine/install/ubuntu/"
+        sudo apt-get install ca-certificates curl gnupg
+        sudo mkdir -m 0755 -p /etc/apt/keyrings
+        curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+        echo \
+            "deb [arch=\"$(dpkg --print-architecture)\" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+            \"$(. /etc/os-release && echo "$VERSION_CODENAME")\" stable" | \
+            sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+        if { sudo apt-get update 2>&1 || echo E: update failed; } | grep -q '^[WE]:'; then
+            sudo chmod a+r /etc/apt/keyrings/docker.gpg
+            sudo apt-get update
+        fi
 
-	sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
-	sudo usermod -aG docker "${USER}"
+        sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+        sudo usermod -aG docker "${USER}"
+	fi
 fi
 
 ########################################

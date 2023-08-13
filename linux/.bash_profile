@@ -29,7 +29,7 @@ function ZFSstate() {
 ########################################
 
 SETUP_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
-. "${SETUP_DIR}/linux/paths"
+. "${SETUP_DIR}/paths"
 
 ########################################
 # * Aliases

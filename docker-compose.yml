@@ -1,0 +1,11 @@
+version: "3.9"
+
+services:
+    bashortcut:
+        build:
+            context: .
+            dockerfile: ./Dockerfile
+        image: bashortcut
+        command: "ls"
+        volumes:
+            - ./setup.sh:/home/bashortcuser/Projects/bashortcut/setup.sh

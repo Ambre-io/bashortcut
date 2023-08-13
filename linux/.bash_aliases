@@ -179,7 +179,6 @@ alias dcversion="docker version"
 alias dcinfo="docker info"
 
 alias dcr="docker run"  # -rm (del after), -d (detached), -name, -e (env)
-alias dcri="docker run -it"
 alias dcps="docker ps"  # -a (stopped), -q (id)
 alias dcpsa="docker ps -a"
 alias dcins="docker inspect"
@@ -211,6 +210,20 @@ function dccuf() {
 	fi
 }
 alias dccuf=dccuf
+
+########################################
+# * DOCKER RUN
+########################################
+function dcri() {
+    if [ "${#}" -lt 1 ]; then
+        echo "Use: docker run -it <image> bash"
+    elif [ "${#}" -lt 2 ]; then
+        dcr -it "${1}" bash
+    else
+        dcr -it "${@}"
+	fi
+}
+alias dcri=dcri
 
 ########################################
 # * DOCKER EXEC
