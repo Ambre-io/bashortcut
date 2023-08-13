@@ -10,7 +10,6 @@ alias gbprofile="gedit ${BASHORTCUT_ENV_DIR}/.bash_profile &"
 ########################################
 # * OS
 ########################################
-
 alias src="source ${HOME}/.bashrc"
 alias ls="ls -a --color"
 alias l="ls -lAh --color"
@@ -65,13 +64,11 @@ alias ffind=ffind
 ########################################
 # * Libs
 ########################################
-
 alias clrimg="exiftool -all="
 
 ########################################
 # * TMUX
 ########################################
-
 alias tsrc="tmux source-file .tmux.conf"
 alias ta="tmux attach"
 alias tks="tmux kill-session -t"
@@ -86,8 +83,6 @@ alias tx="txns || txad"
 ########################################
 # * GIT
 ########################################
-
-# Actions
 alias gst="git status"
 alias gd="git diff"
 alias ga="git add"
@@ -125,32 +120,24 @@ function gbd(){
 }
 alias gbd=gbd
 
-
 ########################################
 # * POSTGRESQL
 ########################################
-
 # see: https://wiki.debian.org/PostgreSql
-
 alias pguser="sudo -u postgres bash"
 alias adminpg="sudo -u adminpg bash"
 
 ########################################
 # * PYTHON
 ########################################
-
 alias d="deactivate"
-
 alias p="python3"
 alias zen="p -c 'import this'"
-
 
 ########################################
 # * DJANGO
 ########################################
-
 # Setup DJANGO_PATH in a tmux session script
-
 alias pm='p ${DJANGO_PATH}/src/manage.py'
 alias pmr='p ${DJANGO_PATH}/src/manage.py runserver'
 alias pmm='p ${DJANGO_PATH}/src/manage.py migrate'
@@ -174,10 +161,15 @@ alias djuml=djuml
 ########################################
 # * NODE
 ########################################
-
 alias nvml="nvm list"
+alias nrstart="npm start"
+alias nrdevelop="npm run develop"
+alias nrbuild="npm run build"
+alias nrcompile="npm run compile"
+alias nrclean="npm run clean"
+alias nrserve="npm run serve"
+alias nrtypecheck="npm run typecheck"
 
-alias npms="npm start"
 
 
 ########################################
@@ -201,17 +193,42 @@ alias dcsrm=dcsrm
 alias dci="docker images"
 alias dcrmi="docker rmi"
 alias dcl="docker logs -f"
+alias dce="docker exec"
+alias dcsysprune="docker system prune"  # clean
 
-# Build an image
-alias dccb="docker compose build"
+########################################
+# * DOCKER COMPOSE
+########################################
+alias dcc="docker compose --verbose"
+alias dccb="dcc build"  # Build an image
+alias dccup="dcc up"  # Up on one or multiple service container
+alias dccdown="dcc down"  # Down every service in a docker-compose file
+function dccuf() {
+    if [ "${#}" -lt 1 ]; then
+        echo "Use: dccuf <composefile.yaml> [up options: -d ...]"
+    else
+        docker compose --verbose -f "${1}" up "${@:2}"
+	fi
+}
+alias dccuf=dccuf
 
-# Up on or multiple service container 
-alias dccup="docker compose --verbose up"
+########################################
+# * DOCKER EXEC
+########################################
+function dcei() {
+    if [ "${#}" -lt 1 ]; then
+        echo "Use: docker exec -it <container> bash"
+    elif [ "${#}" -lt 2 ]; then
+        dce -it "${1}" bash
+    else
+        docker exec -it "${@}"
+	fi
+}
+alias dcei=dcei
 
-# Down every service in a docker-compose file
-alias dccdown="docker compose down"
-
-# Network
+########################################
+# * DOCKER NETWORK
+########################################
 alias dcnet="docker network ls"
 alias dcneti="docker network inspect"
 alias dcnetrm="docker network rm"
@@ -234,16 +251,9 @@ function dcnetconnect() {
 }
 alias dcnetconnect=dcnetconnect
 
-function dcip() {
-    if [ "${#}" -lt 1 ]; then
-        echo "Use: docker inspect <container>"
-    else
-	    docker inspect "${1}" | awk '/IPAddress/ {if ($2 != "null,")  print $2 }' | uniq | awk -F \" '{print $2}'
-	fi
-}
-alias dcip=dcip
-
-# Volumes
+########################################
+# * DOCKER VOLUME
+########################################
 alias dcv="docker volume ls"
 alias dcvi="docker volume inspect"
 alias dcvrm="docker volume rm"
@@ -267,28 +277,21 @@ function dcvolume() {
 }
 alias dcvolume=dcvolume
 
-# Execution
-function dcec() {
-    if [ "${#}" -lt 2 ]; then
-        echo "Use: docker exec <container> <command>"
-    else
-        docker exec "${@}"
-	fi
-}
-alias dcec=dcec
-
-function dcei() {
+########################################
+# * DOCKER INSPECT
+########################################
+function dcip() {
     if [ "${#}" -lt 1 ]; then
-        echo "Use: docker exec -it <container> bash"
-    elif [ "${#}" -lt 2 ]; then
-        docker exec -it "${1}" bash
+        echo "Use: docker inspect <container>"
     else
-        docker exec -it "${@}"
+	    docker inspect "${1}" | awk '/IPAddress/ {if ($2 != "null,")  print $2 }' | uniq | awk -F \" '{print $2}'
 	fi
 }
-alias dcei=dcei
+alias dcip=dcip
 
-# Container to image
+########################################
+# * DOCKER COMMIT
+########################################
 function dccti() {
     if [ "${#}" -lt 2 ]; then
         echo "Use: docker commit <container> <image:tag>" # then docker run <image:tag>
