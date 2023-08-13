@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # ¯\_(ツ)_/¯
-alias oops="more ${BASHORTCUT_ENV_DIR}/.bash_aliases"
-alias gba="gedit ${BASHORTCUT_ENV_DIR}/.bash_aliases &"
-alias gbpycharm="pycharm.sh ${BASHORTCUT_ENV_DIR}/.bash_aliases &"
-alias gbprofile="gedit ${BASHORTCUT_ENV_DIR}/.bash_profile &"
+alias oops="more ${BASHORTCUT_LINUX_DIR}/.bash_aliases"
+alias gba="gedit ${BASHORTCUT_LINUX_DIR}/.bash_aliases &"
+alias gbpycharm="pycharm.sh ${BASHORTCUT_LINUX_DIR}/.bash_aliases &"
+alias gbprofile="gedit ${BASHORTCUT_LINUX_DIR}/.bash_profile &"
 
 
 ########################################

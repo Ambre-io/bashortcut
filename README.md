@@ -1,35 +1,39 @@
 # BASHORTCUT
 
-Funny way to use Linux, increasing my happiness ☀️ with:
-- Setup & Cleanup
-- Bash Aliases
-- Bash Prompt
-- Tmux Boilerplate
-- Commands
+Funny way to use Linux environment, increasing happiness ☀️ with:
+- [Setup & Cleanup](#1-setup--cleanup)
+- [Tmux Boilerplate](#2-tmux-boilerplate)
+- [Bash Prompt](#3-bash-prompt)
+- [Bash Aliases](#4-bash-aliases)
+- [Commands](#5-commands)
 
 **Philosofy**: automate and shortcut repetitions to decrease charge and increase fluidity.
 
-<!-- ## Try in a Docker container: -->
+## 1. Setup & Cleanup
 
-## 1. Install
+Linux environment based on the `~/.bashrc`:
 
+- **Install**: execute the `setup.sh` script
 ```bash
 mkdir ${HOME}/Projects  # Working dir
 cd ${HOME}/Projects
 git clone https://github.com/guiklimek/bashortcut.git
-# cd bashortcut/linux
-# sh setup.sh
+sh setup.sh
 ```
+- **Update**: perform a git pull (or fetch + merge)
+```bash
+cd ${BASHORCUT}
+git checkout main
+git pull
+```
+- **Delete**: execute the `cleanup.sh` script
+```bash
+cd ${BASHORTCUT}
+sh cleanup.sh
+```
+- 💡 **[in progress]** **Try**: use the docker compose to try the BASHORTCUT shell environment
 
-## 2. Linux
-###### (~/Projects/bashortcut/linux)
-
-A Linux environment, based on the `~/.bashrc`:
-
-- Execute the `setup.sh` script to **install** BASHORTCUT environment
-- Execute the `cleanenv.sh` script to **remove** BASHORTCUT environment (care of your `~/notes`)
-
-## 3. Tmux
+## 2. Tmux Boilerplate
 ###### (~/Projects/bashortcut/tmux)
 
 - Find the tmux config file `.tmux.conf` and a tmux session `example`
@@ -37,7 +41,15 @@ A Linux environment, based on the `~/.bashrc`:
 - Put your sessions in `sessions/` gitignored folder
 - Don't forget to link your new sessions `ln -s sessions/<nwone> /usr/local/bin`
 
-## 4. Commands
+## 3. Bash Prompt
+###### (~/Projects/bashortcut/linux)
+
+
+## 4. Bash Aliases
+###### (~/Projects/bashortcut/linux)
+
+
+## 5. Commands
 ###### (~/Projects/bashortcut/commands)
 
 It's like aliases, in a **S**ingle **R**esponsability **A**lias way:

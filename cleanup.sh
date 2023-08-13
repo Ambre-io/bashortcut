@@ -1,12 +1,10 @@
 #! /bin/bash -e
 
+cat <<EOF
+
 # # # # # # # # # # # # # # # # # # # # # #
 #	    CLEANUP LINUX BASHORTCUT          #
 # # # # # # # # # # # # # # # # # # # # # #
-
-cat <<EOF
-
-=> *** Cleaning up BASHORTCUT ***
 
 EOF
 
@@ -15,20 +13,17 @@ if [[ ! ${REPLY} =~ ^[Yy]$ ]]; then
     exit 0
 fi
 
-############################################################
+########################################
 # Including paths constants
-############################################################
+########################################
 
 # Including: TMUXCONF_TARGET, BASHRC
 SETUP_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
-. "${SETUP_DIR}/paths"
+. "${SETUP_DIR}/linux/paths"
 
-TMUXCONF_TARGET="${TMUXCONF_TARGET}"
-BASHRC="${BASHRC}"
-
-############################################################
+########################################
 # Deleting tmux symlink
-############################################################
+########################################
 
 [ ! -f "${TMUXCONF_TARGET}" ] && echo "Missing file ${TMUXCONF_TARGET}." && exit 1
 
@@ -61,4 +56,7 @@ source "${BASHRC}"
 # Deleting notes
 ############################################################
 
-rm "${HOME}/notes"
+read -p "Delete ~/notes? (y/n) " -n 1 -r
+if [[ ! ${REPLY} =~ ^[Yy]$ ]]; then
+    rm "${HOME}/notes"
+fi

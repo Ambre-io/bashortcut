@@ -1,29 +1,41 @@
 #!/bin/bash
 
-# Bashortcut with Linux
-
+########################################
+# BASHORCUT PATHS
+########################################
+BASHRC="${HOME}/.bashrc" # entry point
+BASHORTCUT_PROJECTS_DIR="${HOME}/Projects"
 BASHORTCUT="${BASHORTCUT_PROJECTS_DIR}/bashortcut"
+BASHORTCUT_LINUX_DIR="${BASHORTCUT}/linux"
+BASH_PROFILE="${BASHORTCUT_LINUX_DIR}/.bash_profile" # main bash file
+TMUXCONF_SOURCE="${BASHORTCUT}/tmux/.tmux.conf" # tmux configuration file
+TMUXCONF_TARGET="${HOME}/.tmux.conf" # created by setup.sh
 
-# Needed for setup
-TMUXDIR="${BASHORTCUT}/tmux"
-CONF=".tmux.conf"
-TMUXCONF_SOURCE="${TMUXDIR}/${CONF}" # tmux configuration file
-TMUXCONF_TARGET="${HOME}/${CONF}" # create by setup.sh
-BASHRC="${HOME}/.bashrc" # setup front door
-LINUX_ENV_DIR="${BASHORTCUT}/linux/environment" # current environment
-BASH_PROFILE="${LINUX_ENV_DIR}/.bash_profile" # main bash file
-
-# Security
+########################################
+# SECURITY
+########################################
 IE=0
-[ ! -d "${BASHORTCUT}" ] && echo "Directory ${BASHORTCUT} DOES NOT exists. You should clone https://github.com/guiklimek/bashortcut.git." && IE=1
-[ ! -d "${TMUXDIR}" ] && echo "Directory ${TMUXDIR} DOES NOT exists." && IE=1
-[ ! -f "${TMUXCONF_SOURCE}" ] && echo "Missing file ${TMUXCONF_SOURCE}." && IE=1
-[ ! -d "${LINUX_ENV_DIR}" ] && echo "Directory ${LINUX_ENV_DIR} DOES NOT exists." && IE=1
-[ ! -f "${BASH_PROFILE}" ] && echo "Missing file ${BASH_PROFILE}." && IE=1
-[ ! -f "${BASHRC}" ] && echo "warning: Missing file ${BASHRC}."
+[ ! -f "${BASHRC}" ] && echo "File ${BASHRC} DOES NOT exists."
+[ ! -d "${BASHORTCUT_PROJECTS_DIR}" ] && echo "Directory ${BASHORTCUT_PROJECTS_DIR} DOES NOT exists." && IE=1
+[ ! -d "${BASHORTCUT}" ] && echo "Directory ${BASHORTCUT} DOES NOT exists. You should go in ~/Projects and clone https://github.com/guiklimek/bashortcut.git." && IE=1
+[ ! -d "${BASHORTCUT_LINUX_DIR}" ] && echo "Directory ${BASHORTCUT_LINUX_DIR} DOES NOT exists." && IE=1
+[ ! -f "${BASH_PROFILE}" ] && echo "File ${BASH_PROFILE} DOES NOT exists." && IE=1
+[ ! -f "${TMUXCONF_SOURCE}" ] && echo "File ${TMUXCONF_SOURCE} DOES NOT exists." && IE=1
+# TMUXCONF_TARGET could not exists
 
 if [ "${IE}" -eq 1 ]; then
     echo "It seems you need to check your paths."
     exit 1
 fi
 
+########################################
+# EXPORT
+########################################
+
+export BASHRC
+export BASHORTCUT_PROJECTS_DIR
+export BASHORTCUT
+export BASHORTCUT_LINUX_DIR
+export BASH_PROFILE
+export TMUXCONF_SOURCE
+export TMUXCONF_TARGET

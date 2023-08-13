@@ -28,18 +28,14 @@ function ZFSstate() {
 # * Paths
 ########################################
 
-export BASHORTCUT_PROJECTS_DIR="${HOME}/Projects"
-export BASHORTCUT="${BASHORTCUT_PROJECTS_DIR}/bashortcut"
-export BASHORTCUT_TMUXSESSIONS_DIR="${BASHORTCUT}/tmux/sessions"
-export BASHORTCUT_ENV_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
-
-COMMAND="${BASHORTCUT}/commands"
+SETUP_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
+. "${SETUP_DIR}/linux/paths"
 
 ########################################
 # * Aliases
 ########################################
 
-BASHALIASES="${BASHORTCUT_ENV_DIR}/.bash_aliases"
+BASHALIASES="${BASHORTCUT_LINUX_DIR}/.bash_aliases"
 if [ -f "${BASHALIASES}" ]; then
     . "${BASHALIASES}"
 fi
@@ -48,7 +44,7 @@ fi
 # * Prompt
 ########################################
 
-BASHPROMPT="${BASHORTCUT_ENV_DIR}/.bash_prompt"
+BASHPROMPT="${BASHORTCUT_LINUX_DIR}/.bash_prompt"
 if [ -f "${BASHPROMPT}" ]; then
     . "${BASHPROMPT}"
 fi

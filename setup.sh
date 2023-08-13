@@ -1,14 +1,10 @@
 #! /bin/bash -e
 
-# # # # # # # # # # # # # # # # # # # # # # # #
-#	       SETUP LINUX BASHORTCUT             #
-# # # # # # # # # # # # # # # # # # # # # # # #
-
 cat <<EOF
 
-#########################################
-*** Setting up BASHORTCUT environment ***
-#########################################
+# # # # # # # # # # # # # # # # # # # # # # # #
+#          SETUP LINUX BASHORTCUT             #
+# # # # # # # # # # # # # # # # # # # # # # # #
 
 EOF
 
@@ -16,23 +12,18 @@ EOF
 export BASHORTCUT_PROJECTS_DIR="${HOME}/Projects"
 [ ! -d "${BASHORTCUT_PROJECTS_DIR}" ] && mkdir -p "${HOME}/Projects"
 
-############################################################
-# Including paths constants
-############################################################
+########################################
+# INCLUDE PATHS
+########################################
 
-# Including: TMUXCONF_SOURCE, TMUXCONF_TARGET, BASHRC
 SETUP_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
-. "${SETUP_DIR}/paths"
-
-TMUXCONF_SOURCE="${TMUXCONF_SOURCE}"
-TMUXCONF_TARGET="${TMUXCONF_TARGET}"
-BASHRC="${HOME}/.bashrc"
+. "${SETUP_DIR}/linux/paths"
 
 [ ! -f "${BASHRC}" ] && echo "Creating file ${BASHRC}" && echo "#! /bin/bash" >>"${BASHRC}"
 
-############################################################
-# Intall Utils
-############################################################
+########################################
+# INSTALL UTILS
+########################################
 
 sudo apt install git tmux
 
@@ -41,9 +32,9 @@ if [[ ${REPLY} =~ ^[Yy]$ ]]; then
     sudo apt install gedit
 fi
 
-############################################################
-# Install Docker
-############################################################
+########################################
+# INSTALL DOCKER
+########################################
 
 if ! systemctl is-active --quiet docker; then
 	echo "Docker Engine repository preparation & installation"
@@ -64,9 +55,9 @@ if ! systemctl is-active --quiet docker; then
 	sudo usermod -aG docker "${USER}"
 fi
 
-############################################################
-# Tmux configuration link
-############################################################
+########################################
+# TMUX CONFIGURATION LINK
+########################################
 
 cat <<EOF
 => Creating Tmux link
@@ -77,16 +68,16 @@ EOF
 # Creating symlinks
 ln -s "${TMUXCONF_SOURCE}" "${TMUXCONF_TARGET}"
 
-############################################################
-# Notes file
-############################################################
+########################################
+# NOTES FILE
+########################################
 
 echo "Create the notes file"
 touch "${HOME}/notes"
 
-################################################################
-# Main .bashrc writing link to environment
-################################################################
+########################################
+# MAIN LINK IN .bashrc
+########################################
 
 echo "=> .bashrc writing (extended if exists)"
 
@@ -101,9 +92,7 @@ EOF
 
 
 echo "=> Sourcing"
-
 # shellcheck source=${HOME}/.bashrc
 source "${BASHRC}"
 
 echo "Nice!"
-

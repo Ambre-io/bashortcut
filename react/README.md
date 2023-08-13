@@ -35,9 +35,9 @@ Maybe that should not be use: please code explicit and simple things, this way w
 
 ## Tricks
 
-- [\<StrictMode>](https://react.dev/reference/react/StrictMode) is an integrated development-only debugger
-- It checks Components usages, re-run effects an extra time but discard the second result and re-render an extra time
-- It's possible to force a Component to reset state by using the 'key' argument
+- [\<StrictMode>](https://react.dev/reference/react/StrictMode) is an integrated development-only debugger. It checks Components usages, re-run effects an extra time but discard the second result and re-render an extra time
+- It's possible to force a Component to reset state by using the `key` argument
+- It's possible to use `await` at top level with self-invoing function
 
 ## Pitfall
 
