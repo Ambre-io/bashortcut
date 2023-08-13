@@ -18,7 +18,7 @@ Linux environment based on the `~/.bashrc`:
 ```bash
 # IN A LOCAL SHELL
 cd ${HOME} && git clone https://github.com/guiklimek/bashortcut.git && cd bashortcut
-docker compose build & docker run -it bashortcut bash
+docker compose build && docker run -it bashortcut bash
 # IN A DOCKER IMAGE INTERACTIVE SHELL
 bash bashortcut/setup.sh  # install script
 # answer 'y' for tmux and git, 'n' for others
