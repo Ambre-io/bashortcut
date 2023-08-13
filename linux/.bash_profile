@@ -27,9 +27,11 @@ function ZFSstate() {
 ########################################
 # * Paths
 ########################################
-
-SETUP_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
-. "${SETUP_DIR}/paths"
+# @@@ FIXME find a generic way to discover the bashortcut original path
+LINUXPATHS="${HOME}/bashortcut/linux/paths"
+[ ! -f "${LINUXPATHS}" ] && echo "File ${LINUXPATHS} DOES NOT exists." exit 1
+# shellcheck source=paths
+. "${LINUXPATHS}"
 
 ########################################
 # * Aliases

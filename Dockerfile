@@ -1,16 +1,13 @@
-FROM ubuntu:22.04 as base
+FROM ubuntu:22.04
 
-RUN groupadd -r bashortcuser --gid=1280
-RUN useradd -r -g bashortcuser --uid=1280 --create-home --shell /bin/bash bashortcuser
-
+RUN apt-get update && apt-get install -y sudo
+RUN useradd -m bashortcuser && echo "bashortcuser:docker" | chpasswd && adduser bashortcuser sudo
 USER bashortcuser
 
 WORKDIR /home/bashortcuser
-
-COPY ./ ./Projects/bashortcut/
+COPY ./ ./bashortcut/
 
 USER root
-
-RUN ln -s "/home/bashortcuser/Projects/bashortcut/tmux/example" "/usr/local/bin"
+RUN ln -s "/home/bashortcuser/bashortcut/tmux/example" "/usr/local/bin"
 
 USER bashortcuser

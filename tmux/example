@@ -26,18 +26,18 @@ tmux send-keys "gedit ${HOME}/notes &" C-m
 
 # then a another terminal tab called window : generally the main repository I work on
 tmux new-window -n "repository"
-tmux send-keys "#cd ${BASHORTCUT_PROJECTS_DIR}/repository" C-m
+tmux send-keys "#cd ${HOME}/repository" C-m
 tmux send-keys "#git status" C-m  # quick look on current changes
 
 # then another one : generally a docker
 tmux new-window -n "up"
-tmux send-keys "cd ${BASHORTCUT_PROJECTS_DIR}/repository" C-m
-tmux send-keys "dccup -d" C-m
+tmux send-keys "#cd ${HOME}/repository" C-m
+tmux send-keys "#dccup -d" C-m
 
 # then another one : generally a watcher
 tmux new-window -n "dev"
-tmux send-keys "cd ${BASHORTCUT_PROJECTS_DIR}/repository/src" C-m
-tmux send-keys "npm run dev" C-m
+tmux send-keys "#cd ${HOME}/repository/src" C-m
+tmux send-keys "#npm run dev" C-m
 
 # then how many you want, I try to never go over 7 tabs
 

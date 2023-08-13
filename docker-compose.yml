@@ -6,6 +6,4 @@ services:
             context: .
             dockerfile: ./Dockerfile
         image: bashortcut
-        command: "ls"
-        volumes:
-            - ./setup.sh:/home/bashortcuser/Projects/bashortcut/setup.sh
+        command: "bash /home/bashortcuser/bashortcut/setup.sh"

@@ -8,7 +8,7 @@ cat <<EOF
 
 EOF
 
-read -p "Are you sure to clean BASHORTCUT (y/n)? " -n 1 -r
+read -p "Are you sure to clean BASHORTCUT (y/n)? " -r REPLY
 if [[ ! ${REPLY} =~ ^[Yy]$ ]]; then
     exit 0
 fi
@@ -16,10 +16,13 @@ fi
 ########################################
 # Including paths constants
 ########################################
-
-# Including: TMUXCONF_TARGET, BASHRC
-SETUP_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
-. "${SETUP_DIR}/paths"
+SETUP=$(command -v -- "${0}")
+SETUPPATH=$(cd -P -- "$(dirname -- "${SETUP}")" && pwd -P)
+LINUXPATHS="${SETUPPATH}/linux/paths"
+[ ! -d "${SETUPPATH}" ] && echo "Directory ${SETUPPATH} DOES NOT exists." && exit 1
+[ ! -f "${LINUXPATHS}" ] && echo "File ${LINUXPATHS} DOES NOT exists." exit 1
+# shellcheck source=linux/paths
+. "${LINUXPATHS}"
 
 ########################################
 # Deleting tmux symlink
@@ -49,14 +52,14 @@ sed -e "/#@@/,/#@@@/d" "${BASHRC}" > "${BASHRC_TMP}" # deleting part from '#@@@'
 rm "${BASHRC}"
 mv "${BASHRC_TMP}" "${BASHRC}"
 
-# shellcheck source=/dev/null
+# shellcheck source=${HOME}/.bashrc
 source "${BASHRC}"
 
 ############################################################
 # Deleting notes
 ############################################################
 
-read -p "Delete ~/notes? (y/n) " -n 1 -r
+read -p "Delete ~/notes? (y/n) " -r REPLY
 if [[ ! ${REPLY} =~ ^[Yy]$ ]]; then
     rm "${HOME}/notes"
 fi

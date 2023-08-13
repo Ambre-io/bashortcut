@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # ¯\_(ツ)_/¯
-alias oops="more ${BASHORTCUT_LINUX_DIR}/.bash_aliases"
+alias oops="cat ${BASHORTCUT_LINUX_DIR}/.bash_aliases"
 alias gba="gedit ${BASHORTCUT_LINUX_DIR}/.bash_aliases &"
 alias gbpycharm="pycharm.sh ${BASHORTCUT_LINUX_DIR}/.bash_aliases &"
 alias gbprofile="gedit ${BASHORTCUT_LINUX_DIR}/.bash_profile &"
@@ -71,7 +71,7 @@ alias clrimg="exiftool -all="
 ########################################
 alias tsrc="tmux source-file .tmux.conf"
 alias ta="tmux attach"
-alias tks="tmux kill-session -t"
+alias tks="tmux kill-session"
 alias tkss="tmux kill-server"
 
 alias tls="tmux list-session"
@@ -111,7 +111,7 @@ function gbd(){
 	if [[ ${#} -lt 1 ]]; then
 		echo "Use: gbd <branch name>"
 	else
-		read -p "Confirm you delete the branch ${1} (y/n): " CONFIRM
+		read -p "Confirm you delete the branch ${1} (y/n): " -r CONFIRM
 		if [ "${CONFIRM}" = "y" || "${CONFIRM}" = "ye" || "${CONFIRM}" = "yes" ]; then
 			git branch -D ${1}
 			gp origin --delete ${1}

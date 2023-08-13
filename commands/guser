@@ -2,7 +2,7 @@
 
 read -p "git username: " -r NAME
 read -p "git email: " -r EMAIL
-read -p "Do you confirm information? (y/n) " -n 1 -r
+read -p "Do you confirm information? (y/n) " -r REPLY
 if [[ ${REPLY} =~ ^[Yy]$ ]]; then
     git config --global user.name "${NAME}"
     RESNAME="${?}"
