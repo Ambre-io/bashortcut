@@ -26,19 +26,19 @@ alias sagu="sag update"
 alias psg="ps -edf | g"
 alias k="kill -9"
 alias n="ss -ntupl"
-function np(){ sudo lsof -i ":${1}" ; }
+function np() { sudo lsof -i ":${1}" ; }
 alias np=np
 
-function histogrep(){
+function histogrep() {
     if [[ ${#} -lt 1 ]]; then
         h
     else
-	    h | g "${1}";
+	    h | g "${@}";
 	fi
 }
 alias hg=histogrep
 
-function histocount(){
+function histocount() {
 	if [ "${1}" = "date" ]; then
 		history | awk '{c[$2]++}END{for (x in c) print c[x],x | "sort -n"}'
 	else
@@ -47,7 +47,7 @@ function histocount(){
 }
 alias hc=histocount
 
-function ffind(){
+function ffind() {
 	if [ ${#} -lt 1 ]; then
 		echo "Error: patternname could not be empty"
 		echo "Use: ffind <patternname> [<path>]"
@@ -60,6 +60,15 @@ function ffind(){
 	fi
 }
 alias ffind=ffind
+
+alias lsgrep() {
+	if [[ ${#} -lt 1 ]]; then
+		l
+    else
+		l | g "${@}";
+	fi
+}
+alias lg=lsgrep
 
 ########################################
 # * Libs
@@ -107,7 +116,7 @@ alias gcuname="gcg user.name"
 alias gcuemail="gcg user.email"
 
 # Delete local and remote branch
-function gbd(){
+function gbd() {
 	if [[ ${#} -lt 1 ]]; then
 		echo "Use: gbd <branch name>"
 	else
@@ -145,7 +154,7 @@ alias pms='p ${DJANGO_PATH}/src/manage.py shell_plus'
 
 alias pipf="pip freeze"
 
-function djuml(){
+function djuml() {
     if [ -z "$1" ]; then
         echo -e "Use: djuml [all] for the entire UML\ndjuml [app1 ... appn] for certain app\nfollowing by the png name, like: djuml money notifications moneynotif-uml";
     elif [ "$1" = "all" ]; then
