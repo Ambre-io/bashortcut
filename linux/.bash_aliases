@@ -61,7 +61,7 @@ function ffind() {
 }
 alias ffind=ffind
 
-alias lsgrep() {
+function lsgrep() {
 	if [[ ${#} -lt 1 ]]; then
 		l
     else
