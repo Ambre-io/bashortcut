@@ -48,6 +48,10 @@ sh cleanup.sh
 ## 2. Tmux Boilerplate
 ###### (~/bashortcut/tmux)
 
+Before, I turned on all my dev tools for 15 minutes every morning. Now, I type 2 letters of an autocomplete command 
+that launches the whole working environment and I take these 15 minutes to have a coffee with the colleagues. 
+Thanks to a tmux session.
+
 - Find the tmux config file `.tmux.conf` and a tmux session `example`
 - Try the `example` tmux session locally with `./example`
 - Put your sessions in `sessions/` gitignored folder
