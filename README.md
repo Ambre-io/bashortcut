@@ -64,7 +64,7 @@ sh cleanup.sh
 ## 5. Commands
 ###### (~/bashortcut/commands)
 
-It's like aliases, in a **S**ingle **R**esponsability **A**lias way:
+It's like aliases in a standalone way:
 
 | Commande   | Description                                            | Example                     | Symlink it                                                     |
 |------------|--------------------------------------------------------|-----------------------------|----------------------------------------------------------------|

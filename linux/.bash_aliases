@@ -25,7 +25,6 @@ alias sagac="sag autoclean"
 alias sagu="sag update"
 alias psg="ps -edf | g"
 alias k="kill -9"
-alias n="ss -ntupl"
 function np() { sudo lsof -i ":${1}" ; }
 alias np=np
 
@@ -69,6 +68,17 @@ function lsgrep() {
 	fi
 }
 alias lg=lsgrep
+
+########################################
+# * Network
+########################################
+alias n="ss -ntupl"
+alias ng="ss -ntupl|grep"
+alias i="ip a"
+# sudo systemctl restart systemd-networkd.service
+# sudo systemctl restart NetworkManager
+# sudo nmcli networking off/on
+
 
 ########################################
 # * Libs
