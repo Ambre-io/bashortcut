@@ -83,7 +83,7 @@ If you want to learn them it's in `.bash_aliases` directly, if not, I'm happy to
 
 It's like aliases in a standalone way:
 
-| Commande   | Description                                            | Example                     | Symlink it                                                     |
+| Command   | Description                                            | Example                     | Symlink it                                                     |
 |------------|--------------------------------------------------------|-----------------------------|----------------------------------------------------------------|
 | shortcuted | Create a symlink for a given file in /usr/local/bin.   | `shortcuted home/path/file` | `sudo ln -s ${BASHORTCUT}/commands/shortcuted /usr/local/bin`  |
 | guser      | CLI to change the git user in global config.           | `guser`                     | `shortcuted ${BASHORTCUT}/commands/guser`                      |
