@@ -21,15 +21,8 @@ alias psg="ps -edf | g"
 alias k="kill -9"
 function np() { sudo lsof -i ":${1}" ; }
 alias np=np
-
-function histogrep() {
-    if [[ ${#} -lt 1 ]]; then
-        h
-    else
-	    h | g "${@}";
-	fi
-}
-alias hg=histogrep
+alias hg="history | grep -e"
+alias lg="ls -lAh --color | grep -e"
 
 function histocount() {
 	if [ "${1}" = "date" ]; then
@@ -54,15 +47,6 @@ function ffind() {
 }
 alias ffind=ffind
 
-function lsgrep() {
-	if [[ ${#} -lt 1 ]]; then
-		l
-    else
-		l | g "${@}";
-	fi
-}
-alias lg=lsgrep
-
 ########################################
 # * Network
 ########################################
@@ -72,12 +56,6 @@ alias i="ip a"
 # sudo systemctl restart systemd-networkd.service
 # sudo systemctl restart NetworkManager
 # sudo nmcli networking off/on
-
-
-########################################
-# * Libs
-########################################
-alias clrimg="exiftool -all="
 
 ########################################
 # * TMUX
@@ -91,7 +69,6 @@ alias tls="tmux list-session"
 alias txns="tmux new-session -s $1"
 alias txad="tmux attach -d -t $1"
 alias tx="txns || txad"
-
 
 ########################################
 # * GIT
@@ -132,6 +109,11 @@ function gbd() {
 	fi
 }
 alias gbd=gbd
+
+########################################
+# * exiftool
+########################################
+alias clrimg="exiftool -all="
 
 ########################################
 # * POSTGRESQL
@@ -183,14 +165,11 @@ alias nrclean="npm run clean"
 alias nrserve="npm run serve"
 alias nrtypecheck="npm run typecheck"
 
-
-
 ########################################
 # * DOCKER
 ########################################
 alias dcversion="docker version"
 alias dcinfo="docker info"
-
 alias dcr="docker run"  # -rm (del after), -d (detached), -name, -e (env)
 alias dcps="docker ps"  # -a (stopped), -q (id)
 alias dcpsa="docker ps -a"
