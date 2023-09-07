@@ -77,6 +77,7 @@ alias gst="git status"
 alias gd="git diff"
 alias ga="git add"
 alias gagst="git add . && gst"
+alias grs="git restore --staged"
 alias gcam="git commit -am"
 alias gcm="git commit -m"
 alias gca="git commit --amend"
@@ -88,7 +89,7 @@ alias grl="git remote -v"
 alias gfp="git fetch --prune"
 alias greset="git reset HEAD"
 alias m="git diff --shortstat"
-alias gfa="gagst && gca && gp -f"
+
 
 # Config
 alias gcl="git config --list"
