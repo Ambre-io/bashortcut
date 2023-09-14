@@ -195,14 +195,22 @@ alias dcc="docker compose --verbose"
 alias dccb="dcc build"  # Build an image
 alias dccup="dcc up"  # Up on one or multiple service container
 alias dccdown="dcc down"  # Down every service in a docker-compose file
-function dccuf() {
+function dccbf() {
     if [ "${#}" -lt 1 ]; then
-        echo "Use: dccuf <composefile.yaml> [up options: -d ...]"
+        echo "Use: dccupf <docker-compose.dev.yml> [up options: -d ...]"
+    else
+        docker compose --verbose -f "${1}" build "${@:2}"
+	fi
+}
+alias dccbf=dccbf
+function dccupf() {
+    if [ "${#}" -lt 1 ]; then
+        echo "Use: dccupf <docker-compose.dev.yml> [up options: -d ...]"
     else
         docker compose --verbose -f "${1}" up "${@:2}"
 	fi
 }
-alias dccuf=dccuf
+alias dccupf=dccupf
 
 ########################################
 # * DOCKER RUN
