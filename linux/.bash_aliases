@@ -87,9 +87,16 @@ alias glg="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset 
 alias gbl="git branch -a"
 alias grl="git remote -v"
 alias gfp="git fetch --prune"
-alias greset="git reset HEAD"
-alias m="git diff --shortstat"
-
+alias gds="git diff --shortstat"
+alias gpt="git push --tags"
+function gt() {
+	if [[ ${#} -lt 2 ]]; then
+		echo "Use: gt <version, e.g.: v1.0.0> <message>"
+	else
+		git tag -a "${1}" -m "${2}"
+	fi
+}
+alias gt=gt
 
 # Config
 alias gcl="git config --list"
@@ -192,20 +199,20 @@ alias dcsysprune="docker system prune"  # clean
 # * DOCKER COMPOSE
 ########################################
 alias dcc="docker compose --verbose"
-alias dccb="dcc build"  # Build an image
+alias dccbuild="dcc build"  # Build an image
 alias dccup="dcc up"  # Up on one or multiple service container
 alias dccdown="dcc down"  # Down every service in a docker-compose file
-function dccbf() {
+function dccbuildf() {
     if [ "${#}" -lt 1 ]; then
-        echo "Use: dccupf <docker-compose.dev.yml> [up options: -d ...]"
+        echo "Use: dccbuildf <docker-compose.dev.yml> [build options]"
     else
         docker compose --verbose -f "${1}" build "${@:2}"
 	fi
 }
-alias dccbf=dccbf
+alias dccbuildf=dccbuildf
 function dccupf() {
     if [ "${#}" -lt 1 ]; then
-        echo "Use: dccupf <docker-compose.dev.yml> [up options: -d ...]"
+        echo "Use: dccupf <docker-compose.dev.yml> [up options]"
     else
         docker compose --verbose -f "${1}" up "${@:2}"
 	fi
