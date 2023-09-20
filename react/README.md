@@ -12,7 +12,7 @@
 ## More...
 
 - JSX elements inside a `map()` always need keys. Keys are a React hint for good performance. Each key should be defined with a stable ID based on data
-- Never nest a Component inside another one, declare all components in the no man's land
+- Never nest a Component inside another one, declare all components at top level (it means the general scope)
 - Do not put numbers on the left side of `&&` in JSX conditional rendering, use booleans only
 - Hooks can only be called within the component main scope
 

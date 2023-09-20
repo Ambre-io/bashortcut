@@ -25,6 +25,9 @@ LINUXPATHS="${SETUPPATH}/linux/paths"
 
 [ ! -x "$(command -v tmux)" ] && read -p "Do you want tmux? (y/n) " -r REPLY && [[ ${REPLY} =~ ^[Yy]$ ]] && sudo apt install tmux
 [ ! -x "$(command -v git)" ] && read -p "Do you want git? (y/n) " -r REPLY && [[ ${REPLY} =~ ^[Yy]$ ]] && sudo apt install git && git config --global --add safe.directory "${BASHORTCUT}"
+# TODO
+#   - git config --global alias.co checkout
+#   - git config --global credential.helper cache
 [ ! -x "$(command -v gedit)" ] && read -p "Do you want gedit? (y/n) " -r REPLY && [[ ${REPLY} =~ ^[Yy]$ ]] && sudo apt install gedit
 
 ########################################

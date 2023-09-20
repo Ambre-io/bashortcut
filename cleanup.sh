@@ -63,3 +63,5 @@ read -p "Delete ~/notes? (y/n) " -r REPLY
 if [[ ! ${REPLY} =~ ^[Yy]$ ]]; then
     rm "${HOME}/notes"
 fi
+
+# TODO git config --global --unset credential.helper
