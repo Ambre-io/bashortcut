@@ -54,6 +54,14 @@ if [[ ${REPLY} =~ ^[Yy]$ ]] && ! systemctl is-active --quiet docker; then
 fi
 
 ########################################
+# Disable unicode code shortcut
+########################################
+read -p "Do you want to disable the unicode shortcut CTRL+SHIFT+u on Ubuntu? (y/n) " -r REPLY
+if [[ ${REPLY} =~ ^[Yy]$ ]]; then
+    gsettings set org.freedesktop.ibus.panel.emoji unicode-hotkey "@as []"
+fi
+
+########################################
 # TMUX CONFIGURATION LINK
 ########################################
 
