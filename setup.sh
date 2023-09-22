@@ -56,6 +56,7 @@ fi
 ########################################
 # Disable unicode code shortcut
 ########################################
+# see: https://superuser.com/a/1392682
 read -p "Do you want to disable the unicode shortcut CTRL+SHIFT+u on Ubuntu? (y/n) " -r REPLY
 if [[ ${REPLY} =~ ^[Yy]$ ]]; then
     gsettings set org.freedesktop.ibus.panel.emoji unicode-hotkey "@as []"
