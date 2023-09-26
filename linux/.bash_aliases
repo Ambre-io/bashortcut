@@ -97,6 +97,18 @@ function gt() {
 	fi
 }
 alias gt=gt
+function gtb() {
+	if [[ ${#} -lt 1 ]]; then
+		echo "Use: gtd <tag to delete>"
+	else
+		read -p "Confirm you want to delete the tag ${1} (y/n): " -r CONFIRM
+		if [[ "${CONFIRM}" == "y" || "${CONFIRM}" == "ye" || "${CONFIRM}" == "yes" ]]; then
+			git tag -d ${1}
+			git push --delete origin ${1}
+		fi
+	fi
+}
+alias gtb=gtb
 
 # Config
 alias gcl="git config --list"
@@ -109,10 +121,10 @@ function gbd() {
 	if [[ ${#} -lt 1 ]]; then
 		echo "Use: gbd <branch name>"
 	else
-		read -p "Confirm you delete the branch ${1} (y/n): " -r CONFIRM
-		if [ "${CONFIRM}" = "y" || "${CONFIRM}" = "ye" || "${CONFIRM}" = "yes" ]; then
+		read -p "Confirm you want to delete the branch ${1} (y/n): " -r CONFIRM
+		if [[ "${CONFIRM}" == "y" || "${CONFIRM}" == "ye" || "${CONFIRM}" == "yes" ]]; then
 			git branch -D ${1}
-			gp origin --delete ${1}
+			git push --delete origin ${1}
 		fi
 	fi
 }
