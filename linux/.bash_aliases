@@ -131,61 +131,6 @@ function gbd() {
 alias gbd=gbd
 
 ########################################
-# * exiftool
-########################################
-alias clrimg="exiftool -all="
-
-########################################
-# * POSTGRESQL
-########################################
-# see: https://wiki.debian.org/PostgreSql
-alias pguser="sudo -u postgres bash"
-alias adminpg="sudo -u adminpg bash"
-
-########################################
-# * PYTHON
-########################################
-alias d="deactivate"
-alias p="python3"
-alias zen="p -c 'import this'"
-
-########################################
-# * DJANGO
-########################################
-# Setup DJANGO_PATH in a tmux session script
-alias pm='p ${DJANGO_PATH}/src/manage.py'
-alias pmr='p ${DJANGO_PATH}/src/manage.py runserver'
-alias pmm='p ${DJANGO_PATH}/src/manage.py migrate'
-alias pms='p ${DJANGO_PATH}/src/manage.py shell_plus'
-
-alias pipf="pip freeze"
-
-function djuml() {
-    if [ -z "$1" ]; then
-        echo -e "Use: djuml [all] for the entire UML\ndjuml [app1 ... appn] for certain app\nfollowing by the png name, like: djuml money notifications moneynotif-uml";
-    elif [ "$1" = "all" ]; then
-        ${DJANGO_PATH}/src/manage.py graph_models -a -g -o $HOME/all.png
-    else
-        ${DJANGO_PATH}/src/manage.py graph_models ${*} -o $HOME/choice.png
-    fi
-}
-
-alias djuml=djuml
-
-
-########################################
-# * NODE
-########################################
-alias nvml="nvm list"
-alias nrstart="npm start"
-alias nrdevelop="npm run develop"
-alias nrbuild="npm run build"
-alias nrcompile="npm run compile"
-alias nrclean="npm run clean"
-alias nrserve="npm run serve"
-alias nrtypecheck="npm run typecheck"
-
-########################################
 # * DOCKER
 ########################################
 alias dcversion="docker version"
@@ -241,6 +186,7 @@ function dccdownf() {
 	fi
 }
 alias dccdownf=dccdownf
+
 ########################################
 # * DOCKER RUN
 ########################################
@@ -343,3 +289,72 @@ function dccti() {
 	fi
 }
 alias dccti=dccti
+
+########################################
+# * Redis
+########################################
+function redisall() {
+	REDISCLI=$(redis.cli -v)
+	if [[ "${REDISCLI}" != *"redis-cli"* ]]; then
+		echo "You should install the redis cli first: https://redis.io/docs/getting-started/"
+	else
+		for i in $(redis.cli KEYS '*'); do echo $i \"$(redis.cli GET $i)\"; done
+	fi
+}
+alias redisall=redisall
+
+
+########################################
+# * NODE
+########################################
+alias nvml="nvm list"
+alias nrstart="npm start"
+alias nrdevelop="npm run develop"
+alias nrbuild="npm run build"
+alias nrcompile="npm run compile"
+alias nrclean="npm run clean"
+alias nrserve="npm run serve"
+alias nrtypecheck="npm run typecheck"
+
+########################################
+# * POSTGRESQL
+########################################
+# see: https://wiki.debian.org/PostgreSql
+alias pguser="sudo -u postgres bash"
+alias adminpg="sudo -u adminpg bash"
+
+########################################
+# * PYTHON
+########################################
+alias d="deactivate"
+alias p="python3"
+alias zen="p -c 'import this'"
+
+########################################
+# * DJANGO
+########################################
+# Setup DJANGO_PATH in a tmux session script
+alias pm='p ${DJANGO_PATH}/src/manage.py'
+alias pmr='p ${DJANGO_PATH}/src/manage.py runserver'
+alias pmm='p ${DJANGO_PATH}/src/manage.py migrate'
+alias pms='p ${DJANGO_PATH}/src/manage.py shell_plus'
+
+alias pipf="pip freeze"
+
+function djuml() {
+    if [ -z "$1" ]; then
+        echo -e "Use: djuml [all] for the entire UML\ndjuml [app1 ... appn] for certain app\nfollowing by the png name, like: djuml money notifications moneynotif-uml";
+    elif [ "$1" = "all" ]; then
+        ${DJANGO_PATH}/src/manage.py graph_models -a -g -o $HOME/all.png
+    else
+        ${DJANGO_PATH}/src/manage.py graph_models ${*} -o $HOME/choice.png
+    fi
+}
+
+alias djuml=djuml
+
+########################################
+# * exiftool
+########################################
+alias clrimg="exiftool -all="
+
