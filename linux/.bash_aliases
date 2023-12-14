@@ -308,13 +308,15 @@ alias redisall=redisall
 # * NODE
 ########################################
 alias nvml="nvm list"
-alias nrstart="npm start"
-alias nrdevelop="npm run develop"
-alias nrbuild="npm run build"
-alias nrcompile="npm run compile"
-alias nrclean="npm run clean"
-alias nrserve="npm run serve"
-alias nrtypecheck="npm run typecheck"
+alias npmi="npm i"  # install
+alias npmstart="npm start"
+alias npmdevelop="npm run develop"
+alias npmdev="npm run dev"
+alias npmbuild="npm run build"
+alias npmcompile="npm run compile"
+alias npmclean="npm run clean"
+alias npmserve="npm run serve"
+alias npmtypecheck="npm run typecheck"
 
 ########################################
 # * POSTGRESQL
