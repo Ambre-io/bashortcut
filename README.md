@@ -17,7 +17,7 @@ Linux environment based on the `~/.bashrc`:
 
 ```bash
 # IN A LOCAL SHELL
-cd ${HOME} && git clone https://github.com/guiklimek/bashortcut.git && cd bashortcut
+cd ${HOME} && git clone https://github.com/Ambre-io/bashortcut.git && cd bashortcut
 docker compose build && docker run -it bashortcut bash
 # IN A DOCKER IMAGE INTERACTIVE SHELL
 bash bashortcut/setup.sh  # install script
@@ -30,7 +30,7 @@ example  # discover the simple tmux session
 - ⚙️ **Local Install**: execute the `setup.sh` script
 ```bash
 cd ${HOME}
-git clone https://github.com/guiklimek/bashortcut.git
+git clone https://github.com/Ambre-io/bashortcut.git
 sh setup.sh
 ```
 - ⬆️ **Local Update**: perform a git pull (or fetch + merge)
