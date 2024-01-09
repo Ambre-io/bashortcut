@@ -63,6 +63,7 @@ Thanks to a tmux session.
 - Try locally the example tmux session with `./example`
 - Put your sessions in `sessions/` gitignored folder
 - Don't forget to link your new sessions `ln -s sessions/<nwone> /usr/local/bin`
+- Incr: https://tmuxcheatsheet.com/
 
 ## 3. Bash Prompt
 
