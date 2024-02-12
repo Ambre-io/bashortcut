@@ -97,7 +97,7 @@ function gt() {
 	fi
 }
 alias gt=gt
-function gtb() {
+function gtd() {
 	if [[ ${#} -lt 1 ]]; then
 		echo "Use: gtd <tag to delete>"
 	else
@@ -108,7 +108,7 @@ function gtb() {
 		fi
 	fi
 }
-alias gtb=gtb
+alias gtd=gtd
 
 # Config
 alias gcl="git config --list"

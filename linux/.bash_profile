@@ -21,7 +21,7 @@ function ZFSstate() {
 		echo "[Warning] >>> Some zpool are not online, see: zpool status"
 	fi
 }
-#ZFSstate <= == not activated by default
+#ZFSstate # not activated by default
 
 
 ########################################
