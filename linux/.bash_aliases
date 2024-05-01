@@ -332,6 +332,17 @@ alias d="deactivate"
 alias p="python3"
 alias zen="p -c 'import this'"
 
+#pp [pip]
+ppl="pip list --outdated"
+ppupgradeall="pip3 list -o | cut -f1 -d' ' | tr " " "\n" | awk '{if(NR>=3)print}' | cut -d' ' -f1 | xargs -n1 pip3 install -U"
+ppfreezer="pip freeze > requirements.txt"
+
+#ppv [pipenv]
+ppvg="pipenv graph"
+ppvi="pipenv install -r requirements.txt"
+
+ppvup="ppl && ppupgradeall && ppfreezer && ppvi" #equivalent to 'ncu -u' (npm-check-update to upgrade every packages)
+
 ########################################
 # * DJANGO
 ########################################
