@@ -328,6 +328,7 @@ alias adminpg="sudo -u adminpg bash"
 ########################################
 # * PYTHON
 ########################################
+alias a="source venv/bin/activate"
 alias d="deactivate"
 alias p="python3"
 alias zen="p -c 'import this'"
