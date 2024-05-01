@@ -340,9 +340,10 @@ ppfreezer="pip freeze > requirements.txt"
 
 #ppv [pipenv]
 ppvg="pipenv graph"
+ppvip="pipenv run pip install"
 ppvi="pipenv install -r requirements.txt"
 
-ppvup="ppl && ppupgradeall && ppfreezer && ppvi" #equivalent to 'ncu -u' (npm-check-update to upgrade every packages)
+ppvup="ppl && ppupgradeall && ppfreezer && ppvi" # equivalent to 'ncu -u' (npm-check-update to upgrade every packages)
 
 ########################################
 # * DJANGO
