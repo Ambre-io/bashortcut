@@ -71,12 +71,12 @@ ask_exe "- Deactivate Automatic Screen Lock?" "gsettings set org.gnome.desktop.s
 
 ask_exe "- Deactive Unicode Code Point ctrl+shift+u?" 'sudo apt install ibus && gsettings set org.freedesktop.ibus.panel.emoji unicode-hotkey "@as []"'
 
-read -p "- Do you want to bind Volume Mute on PrtSc, Volume Down on ScrLk and Volume Up on Pause buttons'? [Y/n] " -r reply
+read -p "- Do you want to bind Volume Mute on PrtSc, Volume Down on ScrLk and Volume Up on Pause buttons? [Y/n] " -r reply
 if [[ ${reply} =~ ^[Yy]$ ]]; then
 	# install
 	sudo apt install xdotool x11-xserver-utils
 	# write file
-	cat <<EOL > ${HOME}/.Xmodmap
+	cat <<EOL > "${HOME}/.Xmodmap"
 keycode 107 = XF86AudioMute
 keycode 78 = XF86AudioLowerVolume
 keycode 127 = XF86AudioRaiseVolume
@@ -84,7 +84,7 @@ EOL
 	# apply
 	xmodmap ${HOME}/.Xmodmap
 	# bind it to start
-	cat <<EOL > ${HOME}/.config/autostart/xmodmap.desktop
+	cat <<EOL > "${HOME}/.config/autostart/xmodmap.desktop"
 [Desktop Entry]
 Type=Application
 Exec=xmodmap ${HOME}/.Xmodmap
@@ -97,8 +97,10 @@ Comment[en_US]=Apply Xmodmap key bindings
 Comment=Apply Xmodmap key bindings
 EOL
 
-	chmod +x ~/.config/autostart/xmodmap.desktop
+	chmod +x "${HOME}/.config/autostart/xmodmap.desktop"
 fi
+
+[ ! -f "${HOME}/notes" ] && ask_exe "- Create a notes file?" "touch ${HOME}/notes"
 
 ########################################
 # INSTALL TOOLS
@@ -111,7 +113,14 @@ EOF
 
 # tmux
 if [ ! -x "$(command -v tmux)" ]; then
-	ask_exe "- Install Tmux?" "sudo apt install tmux"
+	read -p "- Install Tmux? [Y/n] " -r reply
+	if [[ ${reply} =~ ^[Yy]$ ]]; then
+		sudo apt install tmux
+		echo "## Tmux configuration"
+		echo "> Creating tmux config file symlink"
+		# Creating symlink
+		ln -s "${TMUXCONF_SOURCE}" "${TMUXCONF_TARGET}"
+	fi
 fi
 
 # git
@@ -119,18 +128,17 @@ if [ ! -x "$(command -v git)" ]; then
 	read -p "- Install Git? [Y/n] " -r reply
 	if [[ ${reply} =~ ^[Yy]$ ]]; then
 		sudo apt install git
-		echo "### Start Git Configuration ###"
+		echo "## Git configuration ###"
 		git config --global --add safe.directory "${BASHORTCUT}"
-		read -p "Git username: " -r gitusername
-		read -p "Git email: " -r gitemail
-		read -p "Do you want to cache your credentials? [Y/n] " -r gitcredentials
+		read -p "> Git username: " -r gitusername
+		read -p "> Git email: " -r gitemail
+		read -p "> Do you want to cache your credentials? [Y/n] " -r gitcredentials
 		git config --global user.name "${gitusername}"
 		git config --global user.email "${gitemail}"
 		git config --global alias.co checkout
 		if [[ ${gitcredentials} =~ ^[Yy]$ ]]; then
 			git config --global credential.helper cache
 		fi
-		echo "### End ###"
 	fi
 fi
 
@@ -171,30 +179,15 @@ if [ ! systemctl is-active --quiet docker ]; then
 fi
 
 ########################################
-# TMUX CONFIGURATION LINK
-########################################
-
-cat <<EOF
-=> Creating Tmux link
-+ ${TMUXCONF_TARGET} -> ${TMUXCONF_SOURCE}
-
-EOF
-
-# Creating symlinks
-ln -s "${TMUXCONF_SOURCE}" "${TMUXCONF_TARGET}"
-
-########################################
-# NOTES FILE
-########################################
-
-echo "Create the notes file"
-touch "${HOME}/notes"
-
-########################################
 # MAIN LINK IN .bashrc
 ########################################
 
-[ ! -f "${BASHRC}" ] && echo "⚠️ There's no .bashrc file BASHRC=${BASHRC}." && echo "Creating one:" && echo "#! /bin/bash -e" >>"${BASHRC}"
+cat <<EOF
+# INSTALL BASHORTCUT OS LAYER
+
+EOF
+
+[ ! -f "${BASHRC}" ] && echo "#! /bin/bash -e" >> "${BASHRC}"
 
 cat <<EOF >>"${BASHRC}"
 #@@
