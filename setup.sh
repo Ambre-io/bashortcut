@@ -179,7 +179,7 @@ if [ ! systemctl is-active --quiet docker ]; then
 fi
 
 ########################################
-# MAIN LINK IN .bashrc
+# INSTALL BASHORTCUT OS LAYER
 ########################################
 
 cat <<EOF
