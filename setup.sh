@@ -71,6 +71,35 @@ ask_exe "- Deactivate Automatic Screen Lock?" "gsettings set org.gnome.desktop.s
 
 ask_exe "- Deactive Unicode Code Point ctrl+shift+u?" 'sudo apt install ibus && gsettings set org.freedesktop.ibus.panel.emoji unicode-hotkey "@as []"'
 
+read -p "- Do you want to bind Volume Mute on PrtSc, Volume Down on ScrLk and Volume Up on Pause buttons'? [Y/n] " -r reply
+if [[ ${reply} =~ ^[Yy]$ ]]; then
+	# install
+	sudo apt install xdotool x11-xserver-utils
+	# write file
+	cat <<EOL > ${HOME}/.Xmodmap
+keycode 107 = XF86AudioMute
+keycode 78 = XF86AudioLowerVolume
+keycode 127 = XF86AudioRaiseVolume
+EOL
+	# apply
+	xmodmap ${HOME}/.Xmodmap
+	# bind it to start
+	cat <<EOL > ${HOME}/.config/autostart/xmodmap.desktop
+[Desktop Entry]
+Type=Application
+Exec=xmodmap ${HOME}/.Xmodmap
+Hidden=false
+NoDisplay=false
+X-GNOME-Autostart-enabled=true
+Name[en_US]=Xmodmap
+Name=Xmodmap
+Comment[en_US]=Apply Xmodmap key bindings
+Comment=Apply Xmodmap key bindings
+EOL
+
+	chmod +x ~/.config/autostart/xmodmap.desktop
+fi
+
 ########################################
 # INSTALL TOOLS
 ########################################
@@ -107,16 +136,16 @@ fi
 
 # gedit
 if [ ! -x "$(command -v gedit)" ]; then
-	read -p "- Install Gedit? [Y/n] " -r REPLY
-	if [[ ${REPLY} =~ ^[Yy]$ ]]; then
+	read -p "- Install Gedit? [Y/n] " -r reply
+	if [[ ${reply} =~ ^[Yy]$ ]]; then
 		sudo apt install gedit
 	fi
 fi
 
 # Docker
 if [ ! systemctl is-active --quiet docker ]; then
-	read -p "- Install Docker? [Y/n] " -r REPLY
-	if [[ ${REPLY} =~ ^[Yy]$ ]]; then
+	read -p "- Install Docker? [Y/n] " -r reply
+	if [[ ${reply} =~ ^[Yy]$ ]]; then
 
 		# Add Docker's official GPG key
 		echo "Docker Engine repository preparation & installation"
