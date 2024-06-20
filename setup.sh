@@ -17,7 +17,7 @@ ask_exe() {
     local question="$1"
     local command="$2"
 
-    read -p "$question (y/n) " -r reply
+    read -p "$question [Y/n] " -r reply
     if [[ ${reply} =~ ^[Yy]$ ]]; then
         eval "$command"
     fi
@@ -29,6 +29,7 @@ ask_exe() {
 
 cat <<EOF
 # INCLUDE PATHS
+
 EOF
 
 SETUP=$(command -v -- "${0}")
@@ -81,56 +82,63 @@ EOF
 
 # tmux
 if [ ! -x "$(command -v tmux)" ]; then
-	read -p "Do you want tmux? (y/n) " -r REPLY 
-	if [[ ${REPLY} =~ ^[Yy]$ ]]; then
-		sudo apt install tmux
-	fi
+	ask_exe "- Install Tmux?" "sudo apt install tmux"
 fi
 
 # git
 if [ ! -x "$(command -v git)" ]; then
-	read -p "Do you want git? [y/n] " -r REPLY
-	if [[ ${REPLY} =~ ^[Yy]$ ]]; then
+	read -p "- Install Git? [Y/n] " -r reply
+	if [[ ${reply} =~ ^[Yy]$ ]]; then
 		sudo apt install git
+		echo "### Start Git Configuration ###"
 		git config --global --add safe.directory "${BASHORTCUT}"
+		read -p "Git username: " -r gitusername
+		read -p "Git email: " -r gitemail
+		read -p "Do you want to cache your credentials? [Y/n] " -r gitcredentials
+		git config --global user.name "${gitusername}"
+		git config --global user.email "${gitemail}"
+		git config --global alias.co checkout
+		if [[ ${gitcredentials} =~ ^[Yy]$ ]]; then
+			git config --global credential.helper cache
+		fi
+		echo "### End ###"
 	fi
 fi
-# TODO
-#   - git config --global alias.co checkout
-#   - git config --global credential.helper cache
 
 # gedit
 if [ ! -x "$(command -v gedit)" ]; then
-	read -p "Do you want gedit? (y/n) " -r REPLY
+	read -p "- Install Gedit? [Y/n] " -r REPLY
 	if [[ ${REPLY} =~ ^[Yy]$ ]]; then
 		sudo apt install gedit
 	fi
 fi
 
 # Docker
-read -p "Do you want docker? (y/n) " -r REPLY
-if [[ ${REPLY} =~ ^[Yy]$ ]] && ! systemctl is-active --quiet docker; then
+if [ ! systemctl is-active --quiet docker ]; then
+	read -p "- Install Docker? [Y/n] " -r REPLY
+	if [[ ${REPLY} =~ ^[Yy]$ ]]; then
 
-	# Add Docker's official GPG key
-    echo "Docker Engine repository preparation & installation"
-    sudo apt-get install ca-certificates curl gnupg
-    sudo mkdir -m 0755 -p /etc/apt/keyrings
-    sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
-	sudo chmod a+r /etc/apt/keyrings/docker.asc
+		# Add Docker's official GPG key
+		echo "Docker Engine repository preparation & installation"
+		sudo apt-get install ca-certificates curl gnupg
+		sudo mkdir -m 0755 -p /etc/apt/keyrings
+		sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+		sudo chmod a+r /etc/apt/keyrings/docker.asc
 
-    # Add the repository to Apt sources
-	echo \
-		"deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
-		$(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
-		sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+		# Add the repository to Apt sources
+		echo \
+			"deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+			$(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+			sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 
-    if { sudo apt-get update 2>&1 || echo E: update failed; } | grep -q '^[WE]:'; then
-        sudo chmod a+r /etc/apt/keyrings/docker.gpg
-        sudo apt-get update
-    fi
+		if { sudo apt-get update 2>&1 || echo E: update failed; } | grep -q '^[WE]:'; then
+		    sudo chmod a+r /etc/apt/keyrings/docker.gpg
+		    sudo apt-get update
+		fi
 
-    sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
-    sudo usermod -aG docker "${USER}"
+		sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+		sudo usermod -aG docker "${USER}"
+	fi
 fi
 
 ########################################
@@ -168,7 +176,7 @@ fi
 
 EOF
 
-read -p "See .bashrc content? (y/n) " -r REPLY && [[ ${REPLY} =~ ^[Yy]$ ]] && cat "${BASHRC}"
+ask_exe "See .bashrc content?" "cat ${BASHRC}"
 
 echo "Nice! Now exec:"
 echo "source ${BASHRC}"
