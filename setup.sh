@@ -1,7 +1,5 @@
 #! /bin/bash
 
-set -e
-
 cat <<EOF
 
 # # # # # # # # # # # # # # # # # # # # # # # #
@@ -16,13 +14,15 @@ EOF
 ########################################
 
 ask_exe() {
-    local question="$1"
-    local command="$2"
+	local question="$1"
+	local command="$2"
 
-    read -p "$question [Y/n] " -r reply
-    if [[ ${reply} =~ ^[Yy]$ ]]; then
-        eval "$command"
-    fi
+	echo "------------------------------------------"
+	read -p "$question [Y/n] " -r reply
+	echo "------------------------------------------"
+	if [[ ${reply} =~ ^[Yy]$ ]]; then
+		eval "$command"
+	fi
 }
 
 ########################################
@@ -61,9 +61,9 @@ ask_exe "- Reduce Mouse Speed?" "gsettings set org.gnome.desktop.peripherals.mou
 
 ask_exe "- Activate Over-Amplification?" "gsettings set org.gnome.desktop.sound allow-volume-above-100-percent true"
 
-ask_exe "- Create App/ folder?" 'mkdir ~/App'
+ask_exe "- Create App/ folder?" "[ ! -d ${HOME}/App ] && mkdir ${HOME}/App"
 
-ask_exe "- Pin App/ folder in file explorer?" "[ ! -d \"${HOME}/App\" ] && sed -i '1s/^/file:\/\/\/${HOME}\/App App\n/' ${HOME}/.config/gtk-3.0/bookmarks"
+ask_exe "- Pin App/ folder in file explorer?" "[ ! -d ${HOME}/App ] && sed -i '1s/^/file:\/\/\/${HOME}\/App App\n/' ${HOME}/.config/gtk-3.0/bookmarks"
 
 ask_exe "- Switch Power Mode to Performance?" "powerprofilesctl set performance"
 
@@ -79,7 +79,9 @@ ask_exe "- Deactivate Automatic Screen Lock?" "gsettings set org.gnome.desktop.s
 
 ask_exe "- Deactive Unicode Code Point ctrl+shift+u?" 'sudo apt install ibus && gsettings set org.freedesktop.ibus.panel.emoji unicode-hotkey "@as []"'
 
+echo "------------------------------------------"
 read -p "- Do you want to bind Volume Mute on PrtSc, Volume Down on ScrLk and Volume Up on Pause buttons? [Y/n] " -r reply
+echo "------------------------------------------"
 if [[ ${reply} =~ ^[Yy]$ ]]; then
 	# install
 	sudo apt install xdotool x11-xserver-utils
@@ -113,8 +115,9 @@ fi
 ########################################
 # CUSTOMIZE DOCK
 ########################################
-
+echo "------------------------------------------"
 read -p "- Do you want to customize the Dock? [Y/n] " -r reply
+echo "------------------------------------------"
 if [[ ${reply} =~ ^[Yy]$ ]]; then
 
 	ask_exe "- Position Dock to the left?" "gsettings set net.launchpad.plank.dock.settings:/net/launchpad/plank/docks/dock1/ position 'left'"
@@ -122,12 +125,13 @@ if [[ ${reply} =~ ^[Yy]$ ]]; then
 	ask_exe "- Delete LibreOffice dings?" "rm ${HOME}/.config/plank/dock1/launchers/libreoffice*.dockitem"
 
 	ask_exe "- Delete Budgie Welcome dings?" "rm ${HOME}/.config/plank/dock1/launchers/budgie-welcome.dockitem"
-	
-	ask_exe "- Icon Size 42?" "gsettings set net.launchpad.plank.dock.settings:/net/launchpad/plank/docks/dock1/ icon-size 42"
-	
-	ask_exe "- Icon Zoom 130?" "gsettings set net.launchpad.plank.dock.settings:/net/launchpad/plank/docks/dock1/ icon-zoom 130"
 
+	ask_exe "- Icon Size 42?" "gsettings set net.launchpad.plank.dock.settings:/net/launchpad/plank/docks/dock1/ icon-size 42"
+	# FIXME DOES NOT WORK
+	ask_exe "- Icon Zoom 130?" "gsettings set net.launchpad.plank.dock.settings:/net/launchpad/plank/docks/dock1/ icon-zoom 130"
+	# FIXME DOES NOT WORK
 	ask_exe "- Disable Auto-Hide?" "gsettings set net.launchpad.plank.dock.settings:/net/launchpad/plank/docks/dock1/ autohide false"
+
 fi
 
 ########################################
@@ -147,14 +151,18 @@ fi
 
 # Tmux
 if [ ! -x "$(command -v tmux)" ]; then
+	echo "------------------------------------------"
 	read -p "- Install Tmux? [Y/n] " -r reply
+	echo "------------------------------------------"
 	if [[ ${reply} =~ ^[Yy]$ ]]; then
 		# Install
 		sudo apt install tmux
-		echo "## Tmux configuration"
-		echo "> Creating tmux config file symlink"
-		# Creating symlink
-		ln -s "${TMUXCONF_SOURCE}" "${TMUXCONF_TARGET}"
+		read -p "- Use the BASHORTCUT default configuration? [Y/n] " -r reply
+		if [[ ${reply} =~ ^[Yy]$ ]]; then
+			# Creating symlink
+			echo "> Creating tmux config file symlink"
+			ln -s "${TMUXCONF_SOURCE}" "${TMUXCONF_TARGET}"
+		fi
 		# Done
 		echo "Tmux installed: tmux (you should use tmux session that use this command)"
 	fi
@@ -162,7 +170,9 @@ fi
 
 # Git
 if [ ! -x "$(command -v git)" ]; then
+	echo "------------------------------------------"
 	read -p "- Install Git? [Y/n] " -r reply
+	echo "------------------------------------------"
 	if [[ ${reply} =~ ^[Yy]$ ]]; then
 		# Install
 		sudo apt install git
@@ -186,7 +196,9 @@ fi
 
 # Gedit
 if [ ! -x "$(command -v gedit)" ]; then
+	echo "------------------------------------------"
 	read -p "- Install Gedit? [Y/n] " -r reply
+	echo "------------------------------------------"
 	if [[ ${reply} =~ ^[Yy]$ ]]; then
 		# Install
 		sudo apt install gedit
@@ -196,8 +208,11 @@ if [ ! -x "$(command -v gedit)" ]; then
 fi
 
 # Docker
+# FIXME DOES NOT WORK
 if [ ! systemctl is-active --quiet docker ]; then
+	echo "------------------------------------------"
 	read -p "- Install Docker? [Y/n] " -r reply
+	echo "------------------------------------------"
 	if [[ ${reply} =~ ^[Yy]$ ]]; then
 
 		# Add Docker's official GPG key
@@ -227,7 +242,9 @@ fi
 
 # Spotify
 if [ ! -x "$(command -v spotify)" ]; then
+	echo "------------------------------------------"
 	read -p "- Install Spotify? [Y/n] " -r reply
+	echo "------------------------------------------"
 	if [[ ${reply} =~ ^[Yy]$ ]]; then
 		# Install
 		sudo snap install spotify
@@ -237,7 +254,9 @@ if [ ! -x "$(command -v spotify)" ]; then
 fi
 
 # JetBrains Toolbox
+echo "------------------------------------------"
 read -p "- Install JetBrains Toolbox? [Y/n] " -r reply
+echo "------------------------------------------"
 if [[ ${reply} =~ ^[Yy]$ ]]; then
 	# helped by: https://github.com/nagygergo/jetbrains-toolbox-install/blob/master/jetbrains-toolbox.sh
 	# Dirs
@@ -270,7 +289,9 @@ if [[ ${reply} =~ ^[Yy]$ ]]; then
 fi
 
 # Go
+echo "------------------------------------------"
 read -p "- Install Go (lang)? [Y/n] " -r reply
+echo "------------------------------------------"
 if [[ ${reply} =~ ^[Yy]$ ]]; then
 	# Get latest version
 	go_version=$(curl https://go.dev/VERSION?m=text | head -n1)
@@ -290,7 +311,9 @@ fi
 
 # Nvm
 if [ ! -x "$(command -v nvm)" ]; then
+	echo "------------------------------------------"
 	read -p "- Install Nvm (Node Version Manager)? [Y/n] " -r reply
+	echo "------------------------------------------"
 	if [[ ${reply} =~ ^[Yy]$ ]]; then
 		# Get latest version
 		NVM_LATEST_VERSION=$(curl -s https://api.github.com/repos/nvm-sh/nvm/releases/latest | grep -Po '"tag_name": "\K.*?(?=")')
@@ -307,7 +330,9 @@ if [ ! -x "$(command -v nvm)" ]; then
 		# Done
 		echo "Nvm installed: nvm"
 		# Ask for Node using nvm
+		echo "------------------------------------------"
 		read -p "- Install Node? [Y/n] " -r reply
+		echo "------------------------------------------"
 		if [[ ${reply} =~ ^[Yy]$ ]]; then
 			# Install
 			nvm install node
@@ -319,7 +344,9 @@ fi
 
 # Mongo-Compass
 if [ ! -x "$(command -v mongo-compass)" ]; then
+	echo "------------------------------------------"
 	read -p "- Install Mongo-Compass? [Y/n] " -r reply
+	echo "------------------------------------------"
 	if [[ ${reply} =~ ^[Yy]$ ]]; then
 		# Install prerequisite
 		if [ ! -x  "$(command -v jq)" ]; then
@@ -329,6 +356,7 @@ if [ ! -x "$(command -v mongo-compass)" ]; then
 		# Get latest version
 		mongocompass_latestversion=$(curl -s https://api.github.com/repos/mongodb-js/compass/releases/latest | jq -r '.tag_name' | sed 's/^v//')
 		# URI
+		# FIXME dpkg-deb: error: 'mongodb-compass-1.43.4-linux-x64.deb' is not a Debian format archive
 		download_uri="https://downloads.mongodb.com/compass/mongodb-compass-${mongocompass_latestversion}-linux-x64.deb"
 		# Download
 		curl -LO ${download_uri}
@@ -352,10 +380,13 @@ cat <<EOF
 # INSTALL BASHORTCUT OS LAYER
 
 EOF
+echo "------------------------------------------"
+read -p "- Ready to install BASHORTCUT ? [Y/n] " -r reply
+echo "------------------------------------------"
+if [[ ${reply} =~ ^[Yy]$ ]]; then
+	[ ! -f "${BASHRC}" ] && echo "#! /bin/bash -e" >> "${BASHRC}"
 
-[ ! -f "${BASHRC}" ] && echo "#! /bin/bash -e" >> "${BASHRC}"
-
-cat <<EOF >>"${BASHRC}"
+	cat <<EOF >>"${BASHRC}"
 #@@
 if [ -f "${BASH_PROFILE}" ]; then
     . "${BASH_PROFILE}"
@@ -364,7 +395,10 @@ fi
 
 EOF
 
-ask_exe "See .bashrc content?" "cat ${BASHRC}"
+	ask_exe "See .bashrc content?" "cat ${BASHRC}"
 
-echo "Nice! Now exec:"
-echo "source ${BASHRC}"
+	echo "Nice! Now exec:"
+	echo "cd ${HOME} && source ${BASHRC}"
+fi
+
+
