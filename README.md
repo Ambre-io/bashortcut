@@ -1,28 +1,36 @@
-# BASHORTCUT
+# BASHORTCUT - LINUX LAYER
 
-Funny way to use Linux environment, increasing happiness ☀️ with:
+### ☀️ It's a linux layer that help to Setup, Customize and Use for developers
+Tested on Ubuntu Budgie 24.04. Can be used on Ubuntu, Debian and linux-using-shell-like.
+
+## 🚀 Features
+
+- Customize **Mouse Speed**, **Sound**, **Energy**, App folder and notes
+- Customize the **Dock** (bar with software icons)
+- Install **Tmux**, **Git**, **Gedit**, **Docker**, **Spotify**, **JetBrains Toolbox**, **Go**, **NVM**, Mongo-Compass
+- Install BASHORTCUT and Load **Aliases**, **Prompt** and **Development Tools**
+- Each cool part of the **Setup** is individually a **Command**
+
+## 📖 Plan
 
 - [Setup & Cleanup](#1-setup--cleanup)
-- [Tmux Boilerplate](#2-tmux-boilerplate)
+- [Commands](#2-commands)
 - [Bash Prompt](#3-bash-prompt)
-- [Bash Aliases](#4-bash-aliases)
-- [Commands](#5-commands)
+- [Tmux Boilerplate](#4-tmux-boilerplate)
+- [Bash Aliases](#5-bash-aliases)
+
 
 **Philosofy**: automate and shortcut repetitions to decrease charge and increase fluidity.
 
 ## 1. Setup & Cleanup
 
-Linux environment based on the `~/.bashrc`.
+The Setup script ask iteratively questions to setup the OS and install tools. 
+At the end of the process it asks for the BASHORTCUT install.
 
-The setup script create a conditioned source of
-the [.bash_profile](https://github.com/Ambre-io/bashortcut/blob/main/linux/.bash_profile) in your `${HOME}/.bashrc`
-file.
+**Precisions**: BASHORTCUT is based on the `${HOME}/.bashrc`. The setup script create a conditioned source of
+the [.bash_profile](https://github.com/Ambre-io/bashortcut/blob/main/linux/.bash_profile) in the `${HOME}/.bashrc` file. Then, BASHORTCUT is loaded on the fly in each new session.
 
-Bashortcut is loaded on the fly in each new session.
-
-The setup script also offers you the choice of installing git, docker, gedit and tmux.
-
-**TODO** add a choice for the prompt, aliases, profile (zfs) and commands.
+The Cleanup script remove this link. It still needs rework.
 
 - ⚙️ **Local Install**: execute the [setup.sh](https://github.com/Ambre-io/bashortcut/blob/main/setup.sh) script
 
@@ -61,19 +69,17 @@ source /home/bashortcuser/.bashrc  # then source as asked
 cd bashortcut  # discover the prompt with git information
 example  # discover the simple tmux session
 ```
+## 2. Commands
 
-## 2. Tmux Boilerplate
+[Commands](https://github.com/Ambre-io/bashortcut/tree/main/commands) are usefull tools in a standalone way. Not activated by default. Install and Use **shortcuted** to activate them.
 
-Before, I turned on all my dev tools for 15 minutes every morning. Now, I type 2 letters of an autocomplete command
-that launches the whole working environment and I take these 15 minutes to have a coffee with my colleagues.
-Thanks to a tmux session.
+| Command        | Description                                            | Example                           | Activate it (using a symlink)                                 |
+|----------------|--------------------------------------------------------|-----------------------------------|---------------------------------------------------------------|
+| **shortcuted** | Create a symlink for a given file in /usr/local/bin.   | `shortcuted <complete/path/file>` | `sudo ln -s ${BASHORTCUT}/commands/shortcuted /usr/local/bin` |
+| guser          | CLI to change the git user in global config.           | `guser`                           | `shortcuted ${BASHORTCUT}/commands/guser`                     |
+| resolution     | Change the current resolution to 1920x1080 by default. | `resolution "1280x720"`           | `shortcuted ${BASHORTCUT}/commands/resolution`                |
 
-- Find the tmux config file [.tmux.conf](https://github.com/Ambre-io/bashortcut/blob/main/tmux/.tmux.conf) and a tmux
-  session [example](https://github.com/Ambre-io/bashortcut/blob/main/tmux/example)
-- Try locally the example tmux session with `./example`
-- Put your sessions in `sessions/` gitignored folder
-- Don't forget to link your new sessions `ln -s sessions/<nwone> /usr/local/bin`
-- Incr: https://tmuxcheatsheet.com/
+
 
 ## 3. Bash Prompt
 
@@ -91,7 +97,20 @@ Thanks to a tmux session.
 - you can add the old `<user>@<computer name>` part in
   the [.bash_prompt](https://github.com/Ambre-io/bashortcut/blob/main/linux/.bash_prompt#L148) file
 
-## 4. Bash Aliases
+## 4. Tmux Boilerplate
+
+Before, I turned on all my dev tools for 15 minutes every morning. Now, I type 2 letters of an autocomplete command
+that launches the whole working environment and I take these 15 minutes to have a coffee with my colleagues.
+Thanks to a tmux session.
+
+- Find the tmux config file [.tmux.conf](https://github.com/Ambre-io/bashortcut/blob/main/tmux/.tmux.conf) and a tmux
+  session [example](https://github.com/Ambre-io/bashortcut/blob/main/tmux/example)
+- Try locally the example tmux session with `./example`
+- Put your sessions in `sessions/` gitignored folder
+- Don't forget to link your new sessions `ln -s sessions/<nwone> /usr/local/bin`
+- Incr: https://tmuxcheatsheet.com/
+
+## 5. Bash Aliases
 
 At first, it was a brilliant R&D colleague who introduced me to aliases and showed me how to use them very quickly.
 I liked it so much, I instantly created my own. They respond to my way of thinking and my needs.
@@ -101,14 +120,5 @@ click on a single letter to do the same thing.
 If you want to learn them it's in [.bash_aliases](https://github.com/Ambre-io/bashortcut/blob/main/linux/.bash_aliases)
 directly, if not, I'm happy to share that.
 
-## 5. Commands
-
-[Commands](https://github.com/Ambre-io/bashortcut/tree/main/commands) are like aliases in a standalone way:
-
-| Command    | Description                                            | Example                           | Activate it (using a symlink)                                 |
-|------------|--------------------------------------------------------|-----------------------------------|---------------------------------------------------------------|
-| shortcuted | Create a symlink for a given file in /usr/local/bin.   | `shortcuted <complete/path/file>` | `sudo ln -s ${BASHORTCUT}/commands/shortcuted /usr/local/bin` |
-| guser      | CLI to change the git user in global config.           | `guser`                           | `shortcuted ${BASHORTCUT}/commands/guser`                     |
-| resolution | Change the current resolution to 1920x1080 by default. | `resolution "1280x720"`           | `shortcuted ${BASHORTCUT}/commands/resolution`                |
-
-Not activated by default.
+## TODO 
+add a choice for the prompt, aliases, profile (zfs) and commands.
