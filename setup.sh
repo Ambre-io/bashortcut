@@ -282,7 +282,7 @@ if [[ ${reply} =~ ^[Yy]$ ]]; then
 
 	# Symlink it
 	rm "${symlink_exe}" 2>/dev/null || true
-	ln -s "${dir_exe}" "${symlink_exe}"
+	sudo ln -s "${dir_exe}" "${symlink_exe}"
 
 	# Done
 	echo "JetBrains Toolbox installed: jetbrains-toolbox"
