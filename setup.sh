@@ -1,4 +1,6 @@
-#! /bin/bash -e
+#! /bin/bash
+
+set -e
 
 cat <<EOF
 
@@ -41,6 +43,12 @@ LINUXPATHS="${SETUPPATH}/linux/paths"
 . "${LINUXPATHS}"
 
 ########################################
+# Update
+########################################
+
+sudo apt update
+
+########################################
 # CUSTOMIZE OS
 ########################################
 
@@ -55,7 +63,7 @@ ask_exe "- Activate Over-Amplification?" "gsettings set org.gnome.desktop.sound 
 
 ask_exe "- Create App/ folder?" 'mkdir ~/App'
 
-ask_exe "- Pin App/ folder in file explorer?" "[ ! -d \"~/App\" ] && sed -i '1s/^/file:\/\/\/${HOME}\/App App\n/' ~/.config/gtk-3.0/bookmarks"
+ask_exe "- Pin App/ folder in file explorer?" "[ ! -d \"${HOME}/App\" ] && sed -i '1s/^/file:\/\/\/${HOME}\/App App\n/' ${HOME}/.config/gtk-3.0/bookmarks"
 
 ask_exe "- Switch Power Mode to Performance?" "powerprofilesctl set performance"
 
@@ -111,42 +119,59 @@ cat <<EOF
 
 EOF
 
-# tmux
+# Curl
+if [ ! -x "$(command -v curl)" ]; then
+	# Install
+	sudo apt install -y curl
+fi
+
+# Tmux
 if [ ! -x "$(command -v tmux)" ]; then
 	read -p "- Install Tmux? [Y/n] " -r reply
 	if [[ ${reply} =~ ^[Yy]$ ]]; then
+		# Install
 		sudo apt install tmux
 		echo "## Tmux configuration"
 		echo "> Creating tmux config file symlink"
 		# Creating symlink
 		ln -s "${TMUXCONF_SOURCE}" "${TMUXCONF_TARGET}"
+		# Done
+		echo "Tmux installed: tmux (you should use tmux session that use this command)"
 	fi
 fi
 
-# git
+# Git
 if [ ! -x "$(command -v git)" ]; then
 	read -p "- Install Git? [Y/n] " -r reply
 	if [[ ${reply} =~ ^[Yy]$ ]]; then
+		# Install
 		sudo apt install git
 		echo "## Git configuration ###"
 		git config --global --add safe.directory "${BASHORTCUT}"
+		# Ask for username, mail and cache credentials
 		read -p "> Git username: " -r gitusername
 		read -p "> Git email: " -r gitemail
 		read -p "> Do you want to cache your credentials? [Y/n] " -r gitcredentials
+		# Apply
 		git config --global user.name "${gitusername}"
 		git config --global user.email "${gitemail}"
 		git config --global alias.co checkout
 		if [[ ${gitcredentials} =~ ^[Yy]$ ]]; then
 			git config --global credential.helper cache
 		fi
+		# Done
+		echo "Git installed: git"
 	fi
 fi
 
-# gedit
+# Gedit
 if [ ! -x "$(command -v gedit)" ]; then
 	read -p "- Install Gedit? [Y/n] " -r reply
 	if [[ ${reply} =~ ^[Yy]$ ]]; then
+		# Install
 		sudo apt install gedit
+		# Done
+		echo "Gedit installed: gedit"
 	fi
 fi
 
@@ -172,11 +197,132 @@ if [ ! systemctl is-active --quiet docker ]; then
 		    sudo chmod a+r /etc/apt/keyrings/docker.gpg
 		    sudo apt-get update
 		fi
-
+		# Install
 		sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 		sudo usermod -aG docker "${USER}"
+		# Done
+		echo "Docker installed: docker"
 	fi
 fi
+
+# Spotify
+if [ ! -x "$(command -v spotify)" ]; then
+	read -p "- Install Spotify? [Y/n] " -r reply
+	if [[ ${reply} =~ ^[Yy]$ ]]; then
+		# Install
+		sudo snap install spotify
+		# Done
+		echo "Spotify installed: spotify"
+	fi
+fi
+
+# JetBrains Toolbox
+read -p "- Install JetBrains Toolbox? [Y/n] " -r reply
+if [[ ${reply} =~ ^[Yy]$ ]]; then
+	# helped by: https://github.com/nagygergo/jetbrains-toolbox-install/blob/master/jetbrains-toolbox.sh
+	# Dirs
+	install_dir="${HOME}/App"
+	[ ! -d "${install_dir}" ] && mkdir "${install_dir}"
+	name="jetbrains-toolbox"
+	dir_exe="${install_dir}/${name}"
+	symlink_exe="/usr/local/bin/${name}"
+
+	# Get URI and Archive name
+	archive_url=$(curl -s 'https://data.services.jetbrains.com/products/releases?code=TBA&latest=true&type=release' | grep -Po '"linux":.*?[^\\]",' | awk -F ':' '{print $3,":"$4}'| sed 's/[", ]//g')
+	archive_filename=$(basename "${archive_url}")
+
+	# Download the archive
+	rm "./${archive_filename}" 2>/dev/null || true
+	wget -q --show-progress -cO "./${archive_filename}" "${archive_url}"
+
+	# Exctract in ~/App
+	rm "${dir_exe}" 2>/dev/null || true
+	tar -xzf "./${archive_filename}" -C "${install_dir}" --strip-components=1
+	rm "./${archive_filename}"
+	chmod +x "${dir_exe}"
+
+	# Symlink it
+	rm "${symlink_exe}" 2>/dev/null || true
+	ln -s "${dir_exe}" "${symlink_exe}"
+
+	# Done
+	echo "JetBrains Toolbox installed: jetbrains-toolbox"
+fi
+
+# Go
+read -p "- Install Go (lang)? [Y/n] " -r reply
+if [[ ${reply} =~ ^[Yy]$ ]]; then
+	# Get latest version
+	go_version=$(curl https://go.dev/VERSION?m=text | head -n1)
+	# Download archive
+	archive_filename="${go_version}.linux-amd64.tar.gz"
+	wget "https://dl.google.com/go/${archive_filename}"
+	# Clean older if exists
+	sudo rm -rf /usr/local/go
+	# Exctract
+	sudo tar -C /usr/local -xzf "./${archive_filename}"
+	rm "./${archive_filename}"
+	# Export (also done in linux/.bash_profile)
+	export PATH=$PATH:/usr/local/go/bin
+	# Done
+	echo "Go installed: go"
+fi
+
+# Nvm
+if [ ! -x "$(command -v nvm)" ]; then
+	read -p "- Install Nvm (Node Version Manager)? [Y/n] " -r reply
+	if [[ ${reply} =~ ^[Yy]$ ]]; then
+		# Get latest version
+		NVM_LATEST_VERSION=$(curl -s https://api.github.com/repos/nvm-sh/nvm/releases/latest | grep -Po '"tag_name": "\K.*?(?=")')
+		# Download and install
+		curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/${NVM_LATEST_VERSION}/install.sh | bash
+
+		# Export
+		export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+
+		# Activate NVM
+		[ -s "${NVM_DIR}/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+		# Activate NVM Completion
+		[[ -r ${NVM_DIR}/bash_completion ]] && \. ${NVM_DIR}/bash_completion
+		# Done
+		echo "Nvm installed: nvm"
+		# Ask for Node using nvm
+		read -p "- Install Node? [Y/n] " -r reply
+		if [[ ${reply} =~ ^[Yy]$ ]]; then
+			# Install
+			nvm install node
+			# Done
+			echo "Node installed: node"
+		fi
+	fi
+fi
+
+# Mongo-Compass
+if [ ! -x "$(command -v mongo-compass)" ]; then
+	read -p "- Install Mongo-Compass? [Y/n] " -r reply
+	if [[ ${reply} =~ ^[Yy]$ ]]; then
+		# Install prerequisite
+		if [ ! -x  "$(command -v jq)" ]; then
+			# Install jq
+			sudo apt install -y jq
+		fi
+		# Get latest version
+		mongocompass_latestversion=$(curl -s https://api.github.com/repos/mongodb-js/compass/releases/latest | jq -r '.tag_name' | sed 's/^v//')
+		# URI
+		download_uri="https://downloads.mongodb.com/compass/mongodb-compass-${mongocompass_latestversion}-linux-x64.deb"
+		# Download
+		curl -LO ${download_uri}
+		# Install (debian like)
+		sudo dpkg -i mongodb-compass-${mongocompass_latestversion}-linux-x64.deb
+		# Fix Broken Dependencies
+		sudo apt-get install -f -y
+		# Clean
+		rm "./mongodb-compass-${mongocompass_latestversion}-linux-x64.deb"
+		# Done
+		echo "Mongo-Compass installed: mongodb-compass"
+	fi
+fi
+
 
 ########################################
 # INSTALL BASHORTCUT OS LAYER
