@@ -1,10 +1,8 @@
-# BASHORTCUT - LINUX LAYER
+# 🧰 BASHORTCUT - LINUX LAYER
 
-### ☀️ It's a linux layer that help to Setup, Customize and Use for developers
+**Philosofy**: automate and shortcut repetitions to decrease charge and increase fluidity.
 
-Tested on Ubuntu Budgie 24.04. Can be used on Ubuntu, Debian and linux-using-shell-like.
-
-## 🚀 Features
+## ☀️ Features
 
 - Customize **Mouse Speed**, **Sound**, **Energy**, App folder and notes
 - Customize the **Dock** (bar with software icons)
@@ -14,15 +12,13 @@ Tested on Ubuntu Budgie 24.04. Can be used on Ubuntu, Debian and linux-using-she
 
 ## 📖 Plan
 
-- [Setup & Cleanup](#1-setup--cleanup)
-- [Commands](#2-commands)
-- [Bash Prompt](#3-bash-prompt)
-- [Tmux Boilerplate](#4-tmux---terminal-multiplexer---boilerplate)
-- [Bash Aliases](#5-bash-aliases)
+- [Setup & Cleanup](#-setup--cleanup)
+- [Commands](#-commands)
+- [Bash Prompt](#-bash-prompt)
+- [Tmux Boilerplate](#-tmux---terminal-multiplexer---boilerplate)
+- [Bash Aliases](#-bash-aliases)
 
-**Philosofy**: automate and shortcut repetitions to decrease charge and increase fluidity.
-
-## 1. Setup & Cleanup
+## 📜 Setup & Cleanup
 
 The Setup script ask iteratively questions to setup the OS and install tools.
 At the end of the process it asks for the BASHORTCUT install.
@@ -71,7 +67,7 @@ cd bashortcut  # discover the prompt with git information
 example  # discover the simple tmux session
 ```
 
-## 2. Commands
+## 🛠️ Commands
 
 ### [Commands](https://github.com/Ambre-io/bashortcut/tree/main/commands) are usefull tools in a standalone way. Not activated by default.
 
@@ -101,10 +97,10 @@ example  # discover the simple tmux session
 
 or
 
-- `shortcuted ${BASHORTCUT}/commands/<command_name.sh>` (
+- `shortcuted.sh ${BASHORTCUT}/commands/<command_name.sh>` (
   with `sudo ln -s ${BASHORTCUT}/commands/shortcuted.sh /usr/local/bin`)
 
-## 3. Bash Prompt
+## 🖥️ Bash Prompt
 
 <span style="color:#55c6e7">[&lt;time&gt;]</span><span style="color:#FFCC00FF">
 &lt;path&gt;</span><span style="color:#8CFF00FF">(&lt;git branch name&gt;)&lt;git sign&gt;</span> $
@@ -120,7 +116,7 @@ or
 - you can add the old `<user>@<computer name>` part in
   the [.bash_prompt](https://github.com/Ambre-io/bashortcut/blob/main/linux/.bash_prompt#L148) file
 
-## 4. Tmux - Terminal Multiplexer - Boilerplate
+## 🪟 Tmux - Terminal Multiplexer - Boilerplate
 
 Before, I turned on all my dev tools for 15 minutes every morning. Now, I type 2 letters of an autocomplete command
 that launches the whole working environment and I take these 15 minutes to have a coffee with my colleagues, thanks to a
@@ -145,7 +141,7 @@ tmux session.
 - Don't forget to link your new sessions `ln -s sessions/<nwone> /usr/local/bin`
 - Incr: https://tmuxcheatsheet.com/
 
-## 5. Bash Aliases
+## 💨 Bash Aliases
 
 At first, it was a brilliant R&D colleague who introduced me to aliases and showed me how to use them very quickly.
 I liked it so much, I instantly created my own. They respond to my way of thinking and my needs.
