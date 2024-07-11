@@ -150,3 +150,25 @@ click on a single letter to do the same thing.
 
 If you want to learn them it's in [.bash_aliases](https://github.com/Ambre-io/bashortcut/blob/main/linux/.bash_aliases)
 directly, if not, I'm happy to share that.
+
+## 📋 TODO
+
+- [ ] Plank Dock arguments
+- Appearance > Icon Zoom
+- Behavior > Hide Dock
+- [ ] Custom Top Panel
+- change size to 24 (height)
+- change Transparency to Always
+- shadow Node
+- Applets : (start) AppMenu, ShowTime, (center) Clock, Weather Show, (end) Show Desktop Button, AppIndicatorApplet, Keyboard Layout, Network, Status Indicator, Separator, User Indicator, Raven Trigger
+- [ ] Cleanup Script
+- Soft cleanup
+- Hard cleanup
+- [ ] Custom Firefox
+- Disable alt
+- [ ] Find a way to save private Tmux sessions and retrieve them easily
+- [ ] Customize gThumb
+- Viewer > Mouse wheel action > Zoom image
+- shortcuts > viewer > show next file <=> Right
+- shortcuts > viewer > show previous file <=> Left
+- shortcuts > viewer > show first file <=> space
