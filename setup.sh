@@ -36,10 +36,8 @@ EOF
 
 SETUP=$(command -v -- "${0}")
 SETUPPATH=$(cd -P -- "$(dirname -- "${SETUP}")" && pwd -P)
-COMMANDS_PATH="${SETUPPATH}/commands"
 LINUXPATHS="${SETUPPATH}/linux/paths"
 [ ! -d "${SETUPPATH}" ] && echo "Directory ${SETUPPATH} DOES NOT exists." && exit 1
-[ ! -d "${COMMANDS_PATH}" ] && echo "Directory ${COMMANDS_PATH} DOES NOT exists." && exit 1
 [ ! -f "${LINUXPATHS}" ] && echo "File ${LINUXPATHS} DOES NOT exists." exit 1
 # shellcheck source=linux/paths
 . "${LINUXPATHS}"
