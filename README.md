@@ -154,7 +154,3 @@ click on a single letter to do the same thing.
 
 If you want to learn them it's in [.bash_aliases](https://github.com/Ambre-io/bashortcut/blob/main/linux/.bash_aliases)
 directly, if not, I'm happy to share that.
-
-## TODO
-
-add a choice for the prompt, aliases.
