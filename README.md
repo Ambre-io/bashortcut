@@ -1,4 +1,4 @@
-# 🧰 BASHORTCUT - LINUX LAYER
+# 🧰 BASHORTCUT - LINUX LAYER 4 DEVELOPERS
 
 **Philosofy**: automate and shortcut repetitions to decrease charge and increase fluidity.
 
@@ -137,9 +137,10 @@ tmux session.
 
 - Find the tmux config file [.tmux.conf](https://github.com/Ambre-io/bashortcut/blob/main/tmux/.tmux.conf) and a tmux
   session [tmux/example](https://github.com/Ambre-io/bashortcut/blob/main/tmux/example)
-- Try locally the example tmux session with `./example` or your own one `./<your_session>`
+- Try locally the example tmux session with `./example`
+- Create your session by copying the `example` file or using `create_tmux_session.sh` command
 - Put your sessions in `sessions/` gitignored folder
-- Don't forget to link your new sessions `ln -s sessions/<nwone> /usr/local/bin`
+- Don't forget to link your new sessions `shortcuted.sh ${BASHORTCUT}/tmux/sessions/<session_name>`
 - Incr: https://tmuxcheatsheet.com/
 
 ## 💨 Bash Aliases
