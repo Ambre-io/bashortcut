@@ -14,8 +14,11 @@ EOF
 
     ask_exe "- Activate Over-Amplification?" "gsettings set org.gnome.desktop.sound allow-volume-above-100-percent true"
 
-    ask_exe "- Create App/ folder?" "[ ! -d ${HOME}/App ] && mkdir ${HOME}/App"
+    ask_exe "- Create ${HOME}/App/ folder (used for installed applications)?" "[ ! -d ${HOME}/App ] && mkdir ${HOME}/App"
 
+    ask_exe "- Create ${HOME}/Projects/ folder (used for cloned repositories)?" "[ ! -d ${HOME}/Projects ] && mkdir ${HOME}/Projects"
+
+    # FIXME: this is not working
     ask_exe "- Pin App/ folder in file explorer?" "[ ! -d ${HOME}/App ] && sed -i '1s/^/file:\/\/\/${HOME}\/App App\n/' ${HOME}/.config/gtk-3.0/bookmarks"
 
     ask_exe "- Switch Power Mode to Performance?" "powerprofilesctl set performance"
