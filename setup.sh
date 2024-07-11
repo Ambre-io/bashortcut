@@ -105,29 +105,4 @@ source "${COMMANDS_PATH}/install_mongocompass.sh"
 # INSTALL BASHORTCUT OS LAYER
 ########################################
 
-cat <<EOF
-# INSTALL BASHORTCUT OS LAYER
-
-EOF
-echo "------------------------------------------"
-read -p "- Ready to install BASHORTCUT ? [Y/n] " -r reply
-echo "------------------------------------------"
-if [[ ${reply} =~ ^[Yy]$ ]]; then
-	[ ! -f "${BASHRC}" ] && echo "#! /bin/bash -e" >> "${BASHRC}"
-
-	cat <<EOF >>"${BASHRC}"
-#@@
-if [ -f "${BASH_PROFILE}" ]; then
-    . "${BASH_PROFILE}"
-fi
-#@@@
-
-EOF
-
-	ask_exe "See .bashrc content?" "cat ${BASHRC}"
-
-	echo "Nice! Now exec:"
-	echo "cd ${HOME} && source ${BASHRC}"
-fi
-
-
+source "${COMMANDS_PATH}/install_bashortcut.sh"
