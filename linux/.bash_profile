@@ -12,6 +12,16 @@
 export HISTTIMEFORMAT="%d/%m/%y %T "
 
 ########################################
+# * Load PATHS
+########################################
+
+LINUXPATHS="${HOME}/bashortcut/linux/paths"
+[ ! -d "${SETUPPATH}" ] && echo "Directory ${SETUPPATH} DOES NOT exists." && exit 1
+[ ! -f "${LINUXPATHS}" ] && echo "File ${LINUXPATHS} DOES NOT exists." exit 1
+# shellcheck source=linux/paths
+. "${LINUXPATHS}"
+
+########################################
 # * Development
 ########################################
 
