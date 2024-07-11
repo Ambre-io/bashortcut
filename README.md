@@ -103,11 +103,11 @@ or
 
 ## 🖥️ Bash Prompt
 
-<span style="color:#55c6e7">[&lt;time&gt;]</span><span style="color:#FFCC00FF">
-&lt;path&gt;</span><span style="color:#8CFF00FF">(&lt;git branch name&gt;)&lt;git sign&gt;</span> $
+</span><span style="color:#FFCC00FF">
+ʙsʜᴛ</span><span style="color:#8CFF00FF"><span style="color:#55c6e7">[&lt;time&gt;]</span><span style="color:#55c6e7">&lt;path&gt;</span><span style="color:#8CFF00FF">(&lt;git branch name&gt;)&lt;git sign&gt;</span> $
 
-<span style="color:#55c6e7">[12:12:34]</span><span style="color:#FFCC00FF">~
-/Projects/sudokube3d</span><span style="color:#8CFF00FF">(main)↑</span> $
+</span><span style="color:#FFCC00FF">
+ʙsʜᴛ</span><span style="color:#8CFF00FF"><span style="color:#55c6e7">[12:12:34]</span><span style="color:#55c6e7">~/Projects/sudokube3d</span><span style="color:#8CFF00FF">(main)↑</span> $
 
 - branch and sign color depend on git status
 - sign depends on git status
