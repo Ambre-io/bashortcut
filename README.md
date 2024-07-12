@@ -7,7 +7,7 @@
 - Customize **Mouse Speed**, **Sound**, **Energy**, App folder and notes
 - Customize the **Dock** (bar with software icons)
 - Install **Tmux**, **Git**, **Gedit**, **Docker**, **Spotify**, **JetBrains Toolbox**, **Go**, **NVM**, Mongo-Compass
-- Install BASHORTCUT and Load **Aliases**, **Prompt** and **Development Tools**
+- Load **Profile**, **Aliases** and **Prompt**
 - Each cool part of the **Setup** is individually a **Command**
 
 ## 📖 Plan
