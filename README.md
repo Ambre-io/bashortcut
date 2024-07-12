@@ -10,6 +10,9 @@
 - Load **Profile**, **Aliases** and **Prompt**
 - Each cool part of the **Setup** is individually a **Command**
 
+Tested on Ubuntu Budgie 24.04 LTS.
+Should be compatible at least with all Debian-based distributions.
+
 ## 📖 Plan
 
 - [Setup & Cleanup](#-setup--cleanup)
@@ -69,15 +72,15 @@ example  # discover the simple tmux session
 
 ## 🛠️ Commands
 
-### [Commands](https://github.com/Ambre-io/bashortcut/tree/main/commands) are usefull tools in a standalone way. Not activated by default.
+[Commands](https://github.com/Ambre-io/bashortcut/tree/main/commands) are usefull tools in a standalone way. Not activated by default.
 
 | Command                          | Description                                                 |
 |----------------------------------|-------------------------------------------------------------|
 | **shortcuted.sh**                | Create a symlink for a given file in /usr/local/bin.        | 
 | **create_tmux_session.sh**       | CLI to create a tmux session (alpha).                       | 
-| **customize_dock.sh**            | CLI to custom the Dock (position, size...).                 |  
+| **customize_dock.sh** 👣         | CLI to custom the Dock (position, size...).                 |  
 | **customize_git_user.sh**        | CLI to change the git user in global config.                |  
-| **customize_os.sh**              | CLI to custom Mouse speed, Sound, Battery and notes.        |   
+| **customize_os.sh** 👣           | CLI to custom Mouse speed, Sound, Battery and notes.        |   
 | **customize_resolution.sh**      | Change the current resolution to 1920x1080 by default.      |  
 | **customize_bashortcut.sh**      | Load Aliases and Prompt.                                    |  
 | **install_curl.sh**              | Install curl.                                               | 
@@ -92,11 +95,13 @@ example  # discover the simple tmux session
 | **install_tmux.sh**              | Install [Tmux](#-tmux---terminal-multiplexer---boilerplate) | 
 | **install_zfs_alert.sh**         | Check if everything is ok on a ZFS pool.                    |
 
-### 2 ways to activate a command on demand:
+👣 gnome-based commands
 
-➡️`shortcuted.sh ./<command.sh>`
+### 2 ways to activate a command on demand
 
-➡️`sudo ln -s ${BASHORTCUT}/commands/<command.sh> /usr/local/bin`
+➡️ `shortcuted.sh ./<command.sh>`
+
+➡️ `sudo ln -s ${BASHORTCUT}/commands/<command.sh> /usr/local/bin`
 
 ## 🖥️ Bash Prompt
 
