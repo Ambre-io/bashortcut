@@ -71,35 +71,32 @@ example  # discover the simple tmux session
 
 ### [Commands](https://github.com/Ambre-io/bashortcut/tree/main/commands) are usefull tools in a standalone way. Not activated by default.
 
-| Command                          | Description                                                   |
-|----------------------------------|---------------------------------------------------------------|
-| **shortcuted.sh**                | Create a symlink for a given file in /usr/local/bin.          | 
-| **create_tmux_session.sh**       | CLI to create a tmux session (alpha).                         | 
-| **customize_dock.sh**            | CLI to custom the Dock (position, size...).                   |  
-| **customize_git_user.sh**        | CLI to change the git user in global config.                  |  
-| **customize_os.sh**              | CLI to custom Mouse speed, Sound, Battery and notes.          |   
-| **customize_resolution.sh**      | Change the current resolution to 1920x1080 by default.        |  
-| **customize_bashortcut.sh**      | Load Aliases and Prompt.                                      |  
-| **install_curl.sh**              | Install curl.                                                 | 
-| **install_docker.sh**            | Install and Launch Docker Engine.                             | 
-| **install_gedit.sh**             | Install Gedit if not already installed.                       | 
-| **install_git.sh**               | Install Git and Configure initial user.                       | 
-| **install_go.sh**                | Clean install of latest Go lang version.                      | 
-| **install_jetbrains_toolbox.sh** | Clean install of latest JetBrains Toolbox.                    | 
-| **install_mongocompass.sh**      | Install latest Mongo-Compass.                                 | 
-| **install_nvm.sh**               | Install latest Node Version Manager and Node.                 | 
-| **install_spotify.sh**           | Install Spotify for the flow.                                 | 
-| **install_tmux.sh**              | Install [Tmux](#4-tmux---terminal-multiplexer---boilerplate). | 
-| **install_zfs_alert.sh**         | Check if everything is ok on a ZFS pool.                      |
+| Command                          | Description                                                 |
+|----------------------------------|-------------------------------------------------------------|
+| **shortcuted.sh**                | Create a symlink for a given file in /usr/local/bin.        | 
+| **create_tmux_session.sh**       | CLI to create a tmux session (alpha).                       | 
+| **customize_dock.sh**            | CLI to custom the Dock (position, size...).                 |  
+| **customize_git_user.sh**        | CLI to change the git user in global config.                |  
+| **customize_os.sh**              | CLI to custom Mouse speed, Sound, Battery and notes.        |   
+| **customize_resolution.sh**      | Change the current resolution to 1920x1080 by default.      |  
+| **customize_bashortcut.sh**      | Load Aliases and Prompt.                                    |  
+| **install_curl.sh**              | Install curl.                                               | 
+| **install_docker.sh**            | Install and Launch Docker Engine.                           | 
+| **install_gedit.sh**             | Install Gedit if not already installed.                     | 
+| **install_git.sh**               | Install Git and Configure initial user.                     | 
+| **install_go.sh**                | Clean install of latest Go lang version.                    | 
+| **install_jetbrains_toolbox.sh** | Clean install of latest JetBrains Toolbox.                  | 
+| **install_mongocompass.sh**      | Install latest Mongo-Compass.                               | 
+| **install_nvm.sh**               | Install latest Node Version Manager and Node.               | 
+| **install_spotify.sh**           | Install Spotify for the flow.                               | 
+| **install_tmux.sh**              | Install [Tmux](#-tmux---terminal-multiplexer---boilerplate) | 
+| **install_zfs_alert.sh**         | Check if everything is ok on a ZFS pool.                    |
 
 ### 2 ways to activate a command on demand:
 
-- `sudo ln -s ${BASHORTCUT}/commands/<command_name.sh> /usr/local/bin`
+➡️`shortcuted.sh ./<command.sh>`
 
-or
-
-- `shortcuted.sh ${BASHORTCUT}/commands/<command_name.sh>` (
-  with `sudo ln -s ${BASHORTCUT}/commands/shortcuted.sh /usr/local/bin`)
+➡️`sudo ln -s ${BASHORTCUT}/commands/<command.sh> /usr/local/bin`
 
 ## 🖥️ Bash Prompt
 

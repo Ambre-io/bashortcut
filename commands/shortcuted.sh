@@ -1,15 +1,14 @@
 #! /bin/bash -e
 
 if [ ${#} -lt 1 ]; then
-	echo "Use: shortcuted <complete path file>"
-	echo "Example: shortcuted ${HOME}/path/file"
+    echo "Use: shortcuted <filepath>"
+    echo "Example: shortcuted ./file"
 else
-	FILEPATH="${1}"
-	if [ ! -f "${FILEPATH}" ]; then
-		echo "Error: please check the path: ${FILEPATH}"
+	filepath=$(realpath "${1}")
+	if [ ! -f "${filepath}" ]; then
+		echo "Error: please check the path: ${filepath}"
 		exit 1
 	fi
-
-	sudo ln -s "${FILEPATH}" "/usr/local/bin"
-
+	sudo ln -s "${filepath}" "/usr/local/bin"
+	echo "$(basename "${filepath}") shortcuted!"
 fi

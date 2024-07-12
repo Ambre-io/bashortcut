@@ -26,6 +26,7 @@ if [ ! -x "$(command -v docker)" ]; then
 		# Install
 		sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 		sudo usermod -aG docker "${USER}"
+		newgrp docker
 		# Done
 		echo "Docker installed: docker"
 	fi
