@@ -28,7 +28,7 @@ The Setup script ask iteratively questions to customize the OS, install tools an
 
 The Cleanup script deactivate the BSHT profile, remove the tmux configuration and notes (it needs a rework).
 
-- ### ⚙️ **Local Install**: execute the [setup.sh](https://github.com/Ambre-io/bashortcut/blob/main/setup.sh) script
+### ⚙️ **Install**
 
 ```bash
 cd ${HOME}
@@ -36,7 +36,7 @@ git clone https://github.com/Ambre-io/bashortcut.git
 sh setup.sh
 ```
 
-- ### ⬇️ **Local Update**: perform a git pull (or fetch + merge)
+### ⬇️ **Update**
 
 ```bash
 cd ${BASHORCUT}
@@ -44,14 +44,14 @@ git checkout main
 git pull
 ```
 
-- ### 🗑️ **Local Delete**: execute the [cleanup.sh](https://github.com/Ambre-io/bashortcut/blob/main/cleanup.sh) script
+### 🗑️ **Delete**
 
 ```bash
 cd ${BASHORTCUT}
 sh cleanup.sh
 ```
 
-- ### 💡 **Try** in a docker image
+### 💡 Try
 
 ```bash
 # IN A LOCAL SHELL
