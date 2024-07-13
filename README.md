@@ -14,10 +14,13 @@ Should be compatible at least with all Debian-based distributions.
 ## 📖 Plan
 
 - [Setup & Cleanup](#-setup--cleanup)
-- [Commands](#-commands)
-- [Bash Prompt](#-bash-prompt)
+- [BSHT Profile](#-bsht-profile)
+  - [Profile](#-profile)
+  - [Prompt](#-prompt)
+  - [Aliases](#-aliases)
+  - [Commands](#-commands)
 - [Tmux Boilerplate](#-tmux---terminal-multiplexer---boilerplate)
-- [Bash Aliases](#-bash-aliases)
+- [TODO](#-todo)
 
 ## 📜 Setup & Cleanup
 
