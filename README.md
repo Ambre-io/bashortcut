@@ -15,7 +15,6 @@ Should be compatible at least with all Debian-based distributions.
 
 - [Setup & Cleanup](#-setup--cleanup)
 - [BSHT Profile](#-bsht-profile)
-  - [Profile](#-profile)
   - [Prompt](#-prompt)
   - [Aliases](#-aliases)
   - [Commands](#-commands)
@@ -68,7 +67,8 @@ example  # discover the simple tmux session
 
 ## ⭐ BSHT profile
 
-The BSHT profile is a set of Prompt, Aliases and Commands that enhance the terminal experience.
+The BSHT profile is a set of Prompt, Aliases, Commands and some Development Tools configuration that enhance 
+the terminal experience. This is the BSHT profile inking file in OS. It is included in the `.bashrc` file. 
 
 <p align="center">
     <img src="linux/BSHT.png" width="500" />
@@ -76,11 +76,6 @@ The BSHT profile is a set of Prompt, Aliases and Commands that enhance the termi
 <p align="center">
    <span style="color: #D724FF; font-size: 11px">BSHT profile, with the Prompt, using Aliases, in a Tmux session</span>
 </p>
-
-### ⚓ Profile
-
-This is the BSHT profile inking file in OS. It is included in the `.bashrc` file. 
-Its role is to load the Prompt, Aliases, Commands and some Development Tools configuration.
 
 ### 🖥️ Prompt
 
