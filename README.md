@@ -26,7 +26,7 @@ Should be compatible at least with all Debian-based distributions.
 
 The Setup script ask iteratively questions to customize the OS, install tools and install the BSHT profile.
 
-The Cleanup script deactive the BSHT profile, remove the tmux configuration and notes (it needs a rework).
+The Cleanup script deactivate the BSHT profile, remove the tmux configuration and notes (it needs a rework).
 
 - ### ⚙️ **Local Install**: execute the [setup.sh](https://github.com/Ambre-io/bashortcut/blob/main/setup.sh) script
 
