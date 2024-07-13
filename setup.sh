@@ -3,7 +3,7 @@
 cat <<EOF
 
 # # # # # # # # # # # # # # # # # # # # # # # #
-#          SETUP LINUX BASHORTCUT             #
+#          INSTALL OS LAYER BASHORTCUT        #
 # # # # # # # # # # # # # # # # # # # # # # # #
 
 EOF
@@ -103,4 +103,9 @@ source "${COMMANDS_PATH}/install_mongocompass.sh"
 # INSTALL BASHORTCUT OS LAYER
 ########################################
 
-source "${COMMANDS_PATH}/install_bashortcut.sh"
+cat <<EOF
+# INSTALL BSHT PROFILE
+
+EOF
+
+source "${COMMANDS_PATH}/install_bsht_profile.sh"

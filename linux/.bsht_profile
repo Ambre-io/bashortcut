@@ -21,6 +21,24 @@ LINUXPATHS="${HOME}/bashortcut/linux/paths"
 . "${LINUXPATHS}"
 
 ########################################
+# * Aliases
+########################################
+BSHTALIASES="${BASHORTCUT_LINUX_DIR}/.bsht_aliases"
+if [ -f "${BSHTALIASES}" ]; then
+    # shellcheck source="${BASHORTCUT_LINUX_DIR}/.bsht_aliases"
+    . "${BSHTALIASES}"
+fi
+
+########################################
+# * Prompt
+########################################
+BSHTPROMPT="${BASHORTCUT_LINUX_DIR}/.bsht_prompt"
+if [ -f "${BSHTPROMPT}" ]; then
+    # shellcheck source="${BASHORTCUT_LINUX_DIR}/.bsht_prompt"
+    . "${BSHTPROMPT}"
+fi
+
+########################################
 # * Development
 ########################################
 
