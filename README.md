@@ -6,7 +6,7 @@
 
 - Customize the OS: **Dock**, **Mouse Speed**, **Sound**, **Energy** and more...
 - Install tools: **Tmux**, **Git**, **Docker**, **Spotify**, **JetBrains Toolbox**, **Go**, **NVM** and more...
-- Load the BSHT profile: **Aliases**, **Prompt** and **Commands**
+- Enhance the terminal experience: **BSHT profile**, **Aliases**, **Prompt** and **Commands**
 
 Tested on Ubuntu Budgie 24.04 LTS.
 Should be compatible at least with all Debian-based distributions.
@@ -17,7 +17,7 @@ Should be compatible at least with all Debian-based distributions.
 - [BSHT Profile](#-bsht-profile)
   - [Prompt](#-prompt)
   - [Aliases](#-aliases)
-  - [Commands](#-commands)
+- [Commands](#-commands)
 - [Tmux Boilerplate](#-tmux---terminal-multiplexer---boilerplate)
 - [TODO](#-todo)
 
@@ -67,7 +67,7 @@ example  # discover the simple tmux session
 
 ## ⭐ BSHT profile
 
-The BSHT profile is a set of Prompt, Aliases, Commands and some Development Tools configuration that enhance 
+The BSHT profile is a set of Prompt, Aliases and some Development Tools configuration that enhance
 the terminal experience. This is the BSHT profile inking file in OS. It is included in the `.bashrc` file. 
 
 <p align="center">
@@ -104,11 +104,11 @@ There are now more than **120 Aliases** in the BSHT profile. To learn them you c
 - use `oops` in a terminal using BSHT profile
 - read them in the [.bsht_aliases](https://github.com/Ambre-io/bashortcut/blob/main/linux/.bsht_aliases) file
 
-### 🛠️ Commands
+Then, when an alias becomme to big or too complex, it evolves into a command.
 
-Then, when an alias becomme to big or too complex, it evolves into a command. It also can aswer to a specific need.
+## 🛠️ Commands
 
-BSHT profile comes with this set of [Commands](https://github.com/Ambre-io/bashortcut/tree/main/commands)
+Set of [Commands](https://github.com/Ambre-io/bashortcut/tree/main/commands)
 (not loaded by default):
 
 | Command                          | Description                                                 |
@@ -134,7 +134,7 @@ BSHT profile comes with this set of [Commands](https://github.com/Ambre-io/basho
 
 👣 gnome-based commands
 
-**2 ways to load a command:**
+### 2 ways to load a command
 
 ➡️ `shortcuted.sh ./<command.sh>`
 
