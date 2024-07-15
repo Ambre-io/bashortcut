@@ -50,21 +50,6 @@ cd ${BASHORTCUT}
 sh cleanup.sh
 ```
 
-### 💡 Try
-
-```bash
-# IN A LOCAL SHELL
-cd ${HOME} && git clone https://github.com/Ambre-io/bashortcut.git && cd bashortcut
-docker compose build && docker run -it bashortcut bash
-# IN A DOCKER IMAGE INTERACTIVE SHELL
-bash bashortcut/setup.sh  # install script
-# answer 'y' for tmux and git, 'n' for others
-# password is 'docker'
-source /home/bashortcuser/.bashrc  # then source as asked
-cd bashortcut  # discover the prompt with git information
-example  # discover the simple tmux session
-```
-
 ## ⭐ BSHT profile
 
 The BSHT profile is a set of Prompt, Aliases and some Development Tools configuration that enhance
