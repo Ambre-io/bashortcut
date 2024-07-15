@@ -50,6 +50,7 @@ EOL
         # apply
         xmodmap ${HOME}/.Xmodmap
         # bind it to start
+        # FIXME correctly added to Startup Applications but does not work: it's not loadedd at start
         cat <<EOL > "${HOME}/.config/autostart/xmodmap.desktop"
 [Desktop Entry]
 Type=Application
