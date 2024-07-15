@@ -131,13 +131,13 @@ Take 15 minutes to have a coffee while your tmux session launches all your work 
 
 A Tmux session is a set of windows and panes in a terminal, executing commands that can be saved and restored in a shell script:
 
-- windows 0: run editors and tools
-- windows 1: show frontend git status
-- windows 2: run frontend server and logs
-- windows 3: show backend git status
-- windows 4: run backend server and logs
-- windows 5: show bashortcut status
-- windows 6: work (generic one with the Zen of Python)
+- window 0: run editors and tools
+- window 1: show frontend git status
+- window 2: run frontend server and logs
+- window 3: show backend git status
+- window 4: run backend server and logs
+- window 5: show bashortcut status
+- window 6: work (generic one with the Zen of Python)
 
 ### Boilerplate
 
