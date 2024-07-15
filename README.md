@@ -127,13 +127,9 @@ Set of [Commands](https://github.com/Ambre-io/bashortcut/tree/main/commands)
 
 ## 🪟 Tmux - Terminal Multiplexer - Boilerplate
 
-Before, I turned on all my dev tools for 15 minutes every morning. 
+Take 15 minutes to have a coffee while your tmux session launches all your work environment.
 
-Now, I type the (autocompleted) Tmux session name that launches the whole working environment.
-
-Thanks to a Tmux session I take 15 minutes to have a coffee with my colleagues.
-
-### A Tmux session is a set of windows and panes executing commands that can be saved and restored in a shell script:
+A Tmux session is a set of windows and panes in a terminal, executing commands that can be saved and restored in a shell script:
 
 - windows 0: run editors and tools
 - windows 1: show frontend git status
@@ -143,15 +139,33 @@ Thanks to a Tmux session I take 15 minutes to have a coffee with my colleagues.
 - windows 5: show bashortcut status
 - windows 6: work (generic one with the Zen of Python)
 
-### Boilerplate - Try and Create your own Tmux session:
+### Boilerplate
 
-- Find the tmux config file [.tmux.conf](https://github.com/Ambre-io/bashortcut/blob/main/tmux/.tmux.conf) and a tmux
-  session [tmux/example](https://github.com/Ambre-io/bashortcut/blob/main/tmux/example)
-- Try locally the example tmux session with `./example`
-- Create your session by copying the `example` file or using `create_tmux_session.sh` command
-- Put your sessions in `sessions/` gitignored folder
-- Don't forget to link your new sessions `shortcuted.sh ${BASHORTCUT}/tmux/sessions/<session_name>`
-- Good usage helper: https://tmuxcheatsheet.com/
+#### 1/ Installation & Configuration
+Tmux is installed during the setup and the default BASHORTCUT config file [.tmux.conf](https://github.com/Ambre-io/bashortcut/blob/main/tmux/.tmux.conf)
+is symlinked. 
+
+If you skipped it you can redo it with the `install_tmux.sh` command.
+
+#### 2/ Test an example
+
+BASHORTCUT comes with a [Tmux example session](https://github.com/Ambre-io/bashortcut/blob/main/tmux/example).
+
+You can try the example session by executing it in a terminal: `./${BASHORTCUT}/tmux/example`.
+
+Use `tks` (`tmux kill-session`) to kill the session.
+
+#### 3/ Create a session
+
+Create your own session by copying the `example` file or using the not tested `create_tmux_session.sh` command.
+
+You can put your sessions in the gitignored folder: `${BASHORTCUT}/tmux/sessions/`.
+
+And link it to use it from everywhere: `shortcuted.sh ${BASHORTCUT}/tmux/sessions/<session_name>`.
+
+#### 4/ Helper
+
+Classic Tmux usage: https://tmuxcheatsheet.com/.
 
 ## 📋 TODO
 
