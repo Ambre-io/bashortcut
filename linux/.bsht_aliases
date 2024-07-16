@@ -208,10 +208,12 @@ function dcei() {
     if [ "${#}" -lt 1 ]; then
         echo "Use: docker exec -it <container> bash"
     elif [ "${#}" -lt 2 ]; then
-        dce -it "${1}" bash
+        if ! docker exec -it "${1}" bash; then
+	    docker exec -it "${1}" ash
+        fi
     else
         docker exec -it "${@}"
-	fi
+    fi
 }
 alias dcei=dcei
 
