@@ -147,7 +147,7 @@ function dcsrm() {
 }
 alias dcsrm=dcsrm
 alias dci="docker images"
-alias dcrmi="docker rmi"
+alias dcirm="docker rmi"
 alias dcl="docker logs -f"
 alias dce="docker exec"
 alias dcsysprune="docker system prune"  # clean
