@@ -90,6 +90,9 @@ source "${COMMANDS_PATH}/install_spotify.sh"
 # JetBrains Toolbox
 source "${COMMANDS_PATH}/install_jetbrains_toolbox.sh"
 
+# VSCode
+source "${COMMANDS_PATH}/install_vscode.sh"
+
 # Go
 source "${COMMANDS_PATH}/install_go.sh"
 
@@ -98,6 +101,9 @@ source "${COMMANDS_PATH}/install_nvm.sh"
 
 # Mongo-Compass
 source "${COMMANDS_PATH}/install_mongocompass.sh"
+
+# DBeaver
+source "${COMMANDS_PATH}/install_dbeaver.sh"
 
 ########################################
 # INSTALL BASHORTCUT OS LAYER

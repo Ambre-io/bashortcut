@@ -5,7 +5,7 @@
 ## ☀️ Features
 
 - Customize the OS: **Dock**, **Mouse Speed**, **Sound**, **Energy** and more...
-- Install tools: **Tmux**, **Git**, **Docker**, **Spotify**, **JetBrains Toolbox**, **Go**, **NVM** and more...
+- Install tools: **Tmux**, **Git**, **Docker**, **JetBrains Toolbox**, **Visual Studio Code**, **Node**, **Spotify** and more...
 - Enhance the terminal experience: **BSHT profile**, **Aliases**, **Prompt** and **Commands**
 
 Tested on Ubuntu Budgie 24.04 LTS.
@@ -15,8 +15,8 @@ Should be compatible at least with all Debian-based distributions.
 
 - [Setup & Cleanup](#-setup--cleanup)
 - [BSHT Profile](#-bsht-profile)
-  - [Prompt](#-prompt)
-  - [Aliases](#-aliases)
+    - [Prompt](#-prompt)
+    - [Aliases](#-aliases)
 - [Commands](#-commands)
 - [Tmux Boilerplate](#-tmux---terminal-multiplexer---boilerplate)
 - [TODO](#-todo)
@@ -53,7 +53,7 @@ sh cleanup.sh
 ## ⭐ BSHT profile
 
 The BSHT profile is a set of Prompt, Aliases and some Development Tools configuration that enhance
-the terminal experience. This is the BSHT profile inking file in OS. It is included in the `.bashrc` file. 
+the terminal experience. This is the BSHT profile inking file in OS. It is included in the `.bashrc` file.
 
 <p align="center">
     <img src="linux/BSHT.png" width="500" />
@@ -64,13 +64,16 @@ the terminal experience. This is the BSHT profile inking file in OS. It is inclu
 
 ### 🖥️ Prompt
 
-BSHT profile optimizes prompt usage with cursor placement, useful information and color coding based on terminal profile: 
+BSHT profile optimizes prompt usage with cursor placement, useful information and color coding based on terminal
+profile:
 
 </span><span style="color:#FFCC00FF">
-ʙsʜᴛ</span><span style="color:#8CFF00FF"><span style="color:#55c6e7">[&lt;time&gt;]</span><span style="color:#55c6e7">&lt;path&gt;</span><span style="color:#8CFF00FF">(&lt;git branch name&gt;)&lt;git sign&gt;</span> $
+ʙsʜᴛ</span><span style="color:#8CFF00FF"><span style="color:#55c6e7">[&lt;time&gt;]</span><span style="color:#55c6e7">
+&lt;path&gt;</span><span style="color:#8CFF00FF">(&lt;git branch name&gt;)&lt;git sign&gt;</span> $
 
 </span><span style="color:#FFCC00FF">
-ʙsʜᴛ</span><span style="color:#8CFF00FF"><span style="color:#55c6e7">[12:12:34]</span><span style="color:#55c6e7">~/bashortcut</span><span style="color:#8CFF00FF">(main)↑</span> $
+ʙsʜᴛ</span><span style="color:#8CFF00FF"><span style="color:#55c6e7">[12:12:34]</span><span style="color:#55c6e7">~
+/bashortcut</span><span style="color:#8CFF00FF">(main)↑</span> $
 
 - branch and sign color depend on git status
 - sign depends on git status
@@ -82,10 +85,12 @@ BSHT profile optimizes prompt usage with cursor placement, useful information an
 
 ### 💨 Aliases
 
-At the beginning, in 2016, it was a brilliant R&D colleague who introduced me to aliases and showed me how to use them very quickly. 
+At the beginning, in 2016, it was a brilliant R&D colleague who introduced me to aliases and showed me how to use them
+very quickly.
 The main goal is to follow the flow of ideas. I liked it so much, I instantly created my own.
 
 There are now more than **120 Aliases** in the BSHT profile. To learn them you can:
+
 - use `oops` in a terminal using BSHT profile
 - read them in the [.bsht_aliases](https://github.com/Ambre-io/bashortcut/blob/main/linux/.bsht_aliases) file
 
@@ -96,26 +101,28 @@ Then, when an alias becomme to big or too complex, it evolves into a command.
 Set of [Commands](https://github.com/Ambre-io/bashortcut/tree/main/commands)
 (not loaded by default):
 
-| Command                          | Description                                                 |
-|----------------------------------|-------------------------------------------------------------|
-| **create_tmux_session.sh**       | (alpha) CLI to create a tmux session.                       | 
-| **customize_dock.sh** 👣         | CLI to custom the Dock (position, size...).                 |  
-| **customize_git_user.sh**        | CLI to change the git user in global config.                |  
-| **customize_os.sh** 👣           | CLI to custom Mouse speed, Sound, Battery and notes.        |   
-| **customize_resolution.sh**      | Change the current resolution to 1920x1080 by default.      |  
-| **customize_bsht_profile.sh**    | Load Aliases, Prompt and Commands.                          |  
-| **install_curl.sh**              | Install curl.                                               | 
-| **install_docker.sh**            | Install and Launch Docker Engine.                           | 
-| **install_gedit.sh**             | Install Gedit if not already installed.                     | 
-| **install_git.sh**               | Install Git and Configure initial user.                     | 
-| **install_go.sh**                | Clean install of latest Go lang version.                    | 
-| **install_jetbrains_toolbox.sh** | Clean install of latest JetBrains Toolbox.                  | 
-| **install_mongocompass.sh**      | Install latest Mongo-Compass.                               | 
-| **install_nvm.sh**               | Install latest Node Version Manager and Node.               | 
-| **install_spotify.sh**           | Install Spotify for the flow.                               | 
-| **install_tmux.sh**              | Install [Tmux](#-tmux---terminal-multiplexer---boilerplate) | 
-| **install_zfs_alert.sh**         | Check if everything is ok on a ZFS pool.                    |
-| **shortcuted.sh**                | Create a symlink for a given file in /usr/local/bin.        | 
+| Command                          | Description                                                  |
+|----------------------------------|--------------------------------------------------------------|
+| **create_tmux_session.sh**       | (alpha) CLI to create a tmux session.                        | 
+| **customize_dock.sh** 👣         | CLI to custom the Dock (position, size...).                  |  
+| **customize_git_user.sh**        | CLI to change the git user in global config.                 |  
+| **customize_os.sh** 👣           | CLI to custom Mouse speed, Sound, Battery and notes.         |   
+| **customize_resolution.sh**      | Change the current resolution to 1920x1080 by default.       |  
+| **customize_bsht_profile.sh**    | Load Aliases, Prompt and Commands.                           |  
+| **install_curl.sh**              | Install curl.                                                | 
+| **install_dbeaver.sh**           | Install DBeaver.                                             | 
+| **install_docker.sh**            | Install and Launch Docker Engine.                            | 
+| **install_gedit.sh**             | Install Gedit if not already installed.                      | 
+| **install_git.sh**               | Install Git and Configure initial user.                      | 
+| **install_go.sh**                | Clean install of latest Go lang version.                     | 
+| **install_jetbrains_toolbox.sh** | Clean install of the latest JetBrains Toolbox.               | 
+| **install_mongocompass.sh**      | Install latest Mongo-Compass.                                | 
+| **install_nvm.sh**               | Install latest Node Version Manager and Node.                | 
+| **install_spotify.sh**           | Install Spotify for the flow.                                | 
+| **install_tmux.sh**              | Install [Tmux](#-tmux---terminal-multiplexer---boilerplate). | 
+| **install_vscode.sh**            | Install Visual Studio Code.                                  | 
+| **install_zfs_alert.sh**         | Check if everything is ok on a ZFS pool.                     |
+| **shortcuted.sh**                | Create a symlink for a given file in /usr/local/bin.         | 
 
 👣 gnome-based commands
 
@@ -129,7 +136,8 @@ Set of [Commands](https://github.com/Ambre-io/bashortcut/tree/main/commands)
 
 Take 15 minutes to have a coffee while your tmux session launches all your work environment.
 
-A Tmux session is a set of windows and panes in a terminal, executing commands that can be saved and restored in a shell script:
+A Tmux session is a set of windows and panes in a terminal, executing commands that can be saved and restored in a shell
+script:
 
 - window 0: run editors and tools
 - window 1: show frontend git status
@@ -142,8 +150,10 @@ A Tmux session is a set of windows and panes in a terminal, executing commands t
 ### Boilerplate
 
 #### 1/ Installation & Configuration
-Tmux is installed during the setup and the default BASHORTCUT config file [.tmux.conf](https://github.com/Ambre-io/bashortcut/blob/main/tmux/.tmux.conf)
-is symlinked. 
+
+Tmux is installed during the setup and the default BASHORTCUT config
+file [.tmux.conf](https://github.com/Ambre-io/bashortcut/blob/main/tmux/.tmux.conf)
+is symlinked.
 
 If you skipped it you can redo it with the `install_tmux.sh` command.
 
