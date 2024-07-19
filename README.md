@@ -109,7 +109,7 @@ Set of [Commands](https://github.com/Ambre-io/bashortcut/tree/main/commands)
 | **customize_git_user.sh**        | CLI to change the git user in global config.                 |  
 | **customize_os.sh** 👣           | CLI to custom Mouse speed, Sound, Battery and notes.         |   
 | **customize_resolution.sh**      | Change the current resolution to 1920x1080 by default.       |  
-| **customize_bsht_profile.sh**    | Load Aliases, Prompt and Commands.                           |  
+| **install_bsht_profile.sh**      | Install Aliases and Prompt by loading the BSHT profile.      |  
 | **install_curl.sh**              | Install curl.                                                | 
 | **install_dbeaver.sh**           | Install DBeaver.                                             | 
 | **install_docker.sh**            | Install and Launch Docker Engine.                            | 
