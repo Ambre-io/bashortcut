@@ -5,7 +5,8 @@
 ## ☀️ Features
 
 - Customize the OS: **Dock**, **Mouse Speed**, **Sound**, **Energy** and more...
-- Install tools: **Tmux**, **Git**, **Docker**, **JetBrains Toolbox**, **Visual Studio Code**, **Node**, **Spotify** and more...
+- Install tools: **Visual Studio Code**, **Node.js**, **Git**, **Tmux**, **Docker**, **JetBrains Toolbox**,
+**Go**, **Spotify** and more...
 - Enhance the terminal experience: **BSHT profile**, **Aliases**, **Prompt** and **Commands**
 
 Tested on Ubuntu Budgie 24.04 LTS.
