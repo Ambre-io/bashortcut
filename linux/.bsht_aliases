@@ -1,16 +1,16 @@
 #!/bin/bash
 
 # ¯\_(ツ)_/¯
-alias oops="cat ${BASHORTCUT_LINUX_DIR}/.bsht_aliases"
-alias gba="gedit ${BASHORTCUT_LINUX_DIR}/.bsht_aliases &"
-alias gbpycharm="pycharm.sh ${BASHORTCUT_LINUX_DIR}/.bsht_aliases &"
-alias gbprofile="gedit ${BASHORTCUT_LINUX_DIR}/.bsht_profile &"
+alias oops='cat ${BASHORTCUT_LINUX_DIR}/.bsht_aliases'
+alias gba='gedit ${BASHORTCUT_LINUX_DIR}/.bsht_aliases &'
+alias gbpycharm='pycharm.sh ${BASHORTCUT_LINUX_DIR}/.bsht_aliases &'
+alias gbprofile='gedit ${BASHORTCUT_LINUX_DIR}/.bsht_profile &'
 
 
 ########################################
 # * OS
 ########################################
-alias src="source ${HOME}/.bashrc"
+alias src='source ${HOME}/.bashrc'
 alias ls="ls -a --color"
 alias l="ls -lAh --color"
 alias g="grep -e"
@@ -66,8 +66,8 @@ alias tks="tmux kill-session"
 alias tkss="tmux kill-server"
 
 alias tls="tmux list-session"
-alias txns="tmux new-session -s $1"
-alias txad="tmux attach -d -t $1"
+alias txns="tmux new-session -s"
+alias txad="tmux attach -d -t"
 alias tx="txns || txad"
 
 ########################################
@@ -103,8 +103,8 @@ function gtd() {
 	else
 		read -p "Confirm you want to delete the tag ${1} (y/n): " -r CONFIRM
 		if [[ "${CONFIRM}" == "y" || "${CONFIRM}" == "ye" || "${CONFIRM}" == "yes" ]]; then
-			git tag -d ${1}
-			git push --delete origin ${1}
+			git tag -d "${1}"
+			git push --delete origin "${1}"
 		fi
 	fi
 }
@@ -123,8 +123,8 @@ function gbd() {
 	else
 		read -p "Confirm you want to delete the branch ${1} (y/n): " -r CONFIRM
 		if [[ "${CONFIRM}" == "y" || "${CONFIRM}" == "ye" || "${CONFIRM}" == "yes" ]]; then
-			git branch -D ${1}
-			git push --delete origin ${1}
+			git branch -D "${1}"
+			git push --delete origin "${1}"
 		fi
 	fi
 }
@@ -219,7 +219,7 @@ function dccreload() {
         # args
         local container="${1}"
         local compose_file="${2:-docker-compose.yml}"
-        local build_options="${@:3}"
+        local build_options="${*:3}"
 
         # remove the container
         dcsrm "${container}"
@@ -312,7 +312,7 @@ function redisall() {
 	if [[ "${REDISCLI}" != *"redis-cli"* ]]; then
 		echo "You should install the redis cli first: https://redis.io/docs/getting-started/"
 	else
-		for i in $(redis.cli KEYS '*'); do echo $i \"$(redis.cli GET $i)\"; done
+		for i in $(redis.cli KEYS '*'); do echo "${i} \"$(redis.cli GET "${i}")\""; done
 	fi
 }
 alias redisall=redisall
@@ -375,9 +375,9 @@ function djuml() {
     if [ -z "$1" ]; then
         echo -e "Use: djuml [all] for the entire UML\ndjuml [app1 ... appn] for certain app\nfollowing by the png name, like: djuml money notifications moneynotif-uml";
     elif [ "$1" = "all" ]; then
-        ${DJANGO_PATH}/src/manage.py graph_models -a -g -o $HOME/all.png
+        "${DJANGO_PATH}"/src/manage.py graph_models -a -g -o "${HOME}/all.png"
     else
-        ${DJANGO_PATH}/src/manage.py graph_models ${*} -o $HOME/choice.png
+        "${DJANGO_PATH}"/src/manage.py graph_models "${*}" -o "${HOME}/choice.png"
     fi
 }
 
@@ -387,3 +387,15 @@ alias djuml=djuml
 # * exiftool
 ########################################
 alias clrimg="exiftool -all="
+
+########################################
+# * ^^
+########################################
+function oeoe() {
+    if [ "${#}" -lt 1 ]; then
+        echo "it's: ^^"
+    else
+        echo "it's: ${*} :)"
+    fi
+}
+alias oeoe=oeoe
