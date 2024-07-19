@@ -387,4 +387,3 @@ alias djuml=djuml
 # * exiftool
 ########################################
 alias clrimg="exiftool -all="
-
