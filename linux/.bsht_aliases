@@ -152,9 +152,7 @@ alias dcl="docker logs -f"
 alias dce="docker exec"
 alias dcsysprune="docker system prune"  # clean
 
-########################################
 # * DOCKER COMPOSE
-########################################
 alias dcc="docker compose --verbose"
 alias dccbuild="dcc build"  # Build an image
 alias dccup="dcc up"  # Up on one or multiple service container
@@ -187,9 +185,7 @@ function dccdownf() {
 }
 alias dccdownf=dccdownf
 
-########################################
 # * DOCKER RUN
-########################################
 function dcri() {
     if [ "${#}" -lt 1 ]; then
         echo "Use: docker run -it <image> bash"
@@ -201,9 +197,7 @@ function dcri() {
 }
 alias dcri=dcri
 
-########################################
 # * DOCKER EXEC
-########################################
 function dcei() {
     if [ "${#}" -lt 1 ]; then
         echo "Use: docker exec -it <container> bash"
@@ -217,9 +211,33 @@ function dcei() {
 }
 alias dcei=dcei
 
-########################################
+# DOCKER CHAINED
+function dccreload() {
+    if [ "${#}" -lt 1 ]; then
+        echo "Use: dccreload <container> [docker-compose file] [build options like --no-cache]"
+    else
+        # args
+        local container="${1}"
+        local compose_file="${2:-docker-compose.yml}"
+        local build_options="${@:3}"
+
+        # remove the container
+        dcsrm "${container}"
+        # rebuild
+        if [ -n "${build_options}" ]; then
+            dccbuildf "${compose_file}" "${build_options}"
+        else
+            dccbuildf "${compose_file}"
+        fi
+        # reup
+        dccupf "${compose_file}" -d
+        # display logs
+        dcl "${container}"
+    fi
+}
+alias dccreload=dccreload
+
 # * DOCKER NETWORK
-########################################
 alias dcnet="docker network ls"
 alias dcneti="docker network inspect"
 alias dcnetrm="docker network rm"
@@ -242,9 +260,7 @@ function dcnetconnect() {
 }
 alias dcnetconnect=dcnetconnect
 
-########################################
 # * DOCKER VOLUME
-########################################
 alias dcv="docker volume ls"
 alias dcvi="docker volume inspect"
 alias dcvrm="docker volume rm"
@@ -268,9 +284,7 @@ function dcvolume() {
 }
 alias dcvolume=dcvolume
 
-########################################
 # * DOCKER INSPECT
-########################################
 function dcip() {
     if [ "${#}" -lt 1 ]; then
         echo "Use: docker inspect <container>"
@@ -280,9 +294,7 @@ function dcip() {
 }
 alias dcip=dcip
 
-########################################
 # * DOCKER COMMIT
-########################################
 function dccti() {
     if [ "${#}" -lt 2 ]; then
         echo "Use: docker commit <container> <image:tag>" # then docker run <image:tag>
