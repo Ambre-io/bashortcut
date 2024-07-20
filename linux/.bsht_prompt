@@ -1,7 +1,6 @@
 #!/bin/bash
 
-# it's not mine, I took that on internet in 2016
-# thank you for that
+# it's not mine, I took that on internet in 2016, thank you for this code.
 
 txtblk='\e[0;30m' # Black - Regular
 txtred='\e[0;31m' # Red
