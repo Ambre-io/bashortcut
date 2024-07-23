@@ -47,6 +47,16 @@ function ffind() {
 }
 alias ffind=ffind
 
+function v() {
+    volume_file="${HOME}/.Xmodmap"
+    if [ -f "${volume_file}" ]; then
+        xmodmap "${volume_file}"
+    else
+        echo "xmodmap not configured"
+    fi
+}
+alias v=v
+
 ########################################
 # * Network
 ########################################
