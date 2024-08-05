@@ -198,3 +198,4 @@ Classic Tmux usage: https://tmuxcheatsheet.com/.
 - shortcuts > viewer > show next file <=> Right
 - shortcuts > viewer > show previous file <=> Left
 - shortcuts > viewer > show first file <=> space
+- [ ] TUI Profile Manager
