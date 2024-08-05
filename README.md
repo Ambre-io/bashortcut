@@ -108,7 +108,8 @@ Set of [Commands](https://github.com/Ambre-io/bashortcut/tree/main/commands)
 | **customize_dock.sh** 👣         | CLI to custom the Dock (position, size...).                  |  
 | **customize_git_user.sh**        | CLI to change the git user in global config.                 |  
 | **customize_os.sh** 👣           | CLI to custom Mouse speed, Sound, Battery and notes.         |   
-| **customize_resolution.sh**      | Change the current resolution to 1920x1080 by default.       |  
+| **customize_resolution.sh**      | Change the current resolution to 1920x1080 by default.       |
+| **exe_zfs_alert.sh**             | Check if everything is ok on a ZFS pool.                     |
 | **install_bsht_profile.sh**      | Install Aliases and Prompt by loading the BSHT profile.      |  
 | **install_curl.sh**              | Install curl.                                                | 
 | **install_dbeaver.sh**           | Install DBeaver.                                             | 
@@ -121,8 +122,7 @@ Set of [Commands](https://github.com/Ambre-io/bashortcut/tree/main/commands)
 | **install_nvm.sh**               | Install latest Node Version Manager and Node.                | 
 | **install_spotify.sh**           | Install Spotify for the flow.                                | 
 | **install_tmux.sh**              | Install [Tmux](#-tmux---terminal-multiplexer---boilerplate). | 
-| **install_vscode.sh**            | Install Visual Studio Code.                                  | 
-| **install_zfs_alert.sh**         | Check if everything is ok on a ZFS pool.                     |
+| **install_vscode.sh**            | Install Visual Studio Code.                                  |
 | **shortcuted.sh**                | Create a symlink for a given file in /usr/local/bin.         | 
 
 👣 gnome-based commands
