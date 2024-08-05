@@ -80,9 +80,9 @@ profile:
 - sign depends on git status
 - **$** is the same color as the terminal text (Foreground) or red on error
 - colors are customizable in
-  the [prompt.sh](https://github.com/Ambre-io/bashortcut/blob/main/bsht/prompt.sh#L148) file
+  the [prompt.sh](https://github.com/Ambre-io/bashortcut/blob/main/bsht/prompt.sh#L147) file
 - you can add the old `<user>@<computer name>` part in
-  the [prompt.sh](https://github.com/Ambre-io/bashortcut/blob/main/bsht/prompt.sh#L148) file
+  the [prompt.sh](https://github.com/Ambre-io/bashortcut/blob/main/bsht/prompt.sh#L147) file
 
 ### 💨 Aliases
 
