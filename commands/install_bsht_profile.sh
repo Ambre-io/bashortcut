@@ -3,12 +3,16 @@
 ########################################
 # * Paths
 ########################################
-LINUXPATHS="${HOME}/bashortcut/linux/paths"
-[ ! -f "${LINUXPATHS}" ] && echo "File ${LINUXPATHS} DOES NOT exists." exit 1
-# shellcheck source=paths
-. "${LINUXPATHS}"
-# shellcheck source=linux/utils
-. "${LINUXUTILS}"
+BASEPATH="${HOME}/bashortcut/bsht"
+BSHTPATHS="${BASEPATH}/paths.sh"
+BSHTUTILS="${BASEPATH}/utils.sh"
+[ ! -d "${BASEPATH}" ] && echo "Directory ${BASEPATH} DOES NOT exists." exit 1
+[ ! -f "${BSHTPATHS}" ] && echo "File ${BSHTPATHS} DOES NOT exists." exit 1
+[ ! -f "${BSHTUTILS}" ] && echo "File ${BSHTUTILS} DOES NOT exists." exit 1
+# shellcheck source=bsht/paths.sh
+. "${BSHTPATHS}"
+# shellcheck source=bsht/utils.sh
+. "${BSHTUTILS}"
 
 ########################################
 # * BSHT profile

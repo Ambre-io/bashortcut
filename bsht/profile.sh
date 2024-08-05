@@ -15,26 +15,26 @@ export HISTTIMEFORMAT="%d/%m/%y %T "
 # * Load PATHS
 ########################################
 
-LINUXPATHS="${HOME}/bashortcut/linux/paths"
-[ ! -f "${LINUXPATHS}" ] && echo "File ${LINUXPATHS} DOES NOT exists." exit 1
-# shellcheck source=linux/paths
-. "${LINUXPATHS}"
+BSHTPATHS="${HOME}/bashortcut/bsht/paths.sh"
+[ ! -f "${BSHTPATHS}" ] && echo "File ${BSHTPATHS} DOES NOT exists." exit 1
+# shellcheck source=bsht/paths.sh
+. "${BSHTPATHS}"
 
 ########################################
 # * Aliases
 ########################################
-BSHTALIASES="${BASHORTCUT_LINUX_DIR}/.bsht_aliases"
+BSHTALIASES="${BASHORTCUT_BSHT_DIR}/aliases.sh"
 if [ -f "${BSHTALIASES}" ]; then
-    # shellcheck source="${BASHORTCUT_LINUX_DIR}/.bsht_aliases"
+    # shellcheck source="${BASHORTCUT_BSHT_DIR}/aliases.sh"
     . "${BSHTALIASES}"
 fi
 
 ########################################
 # * Prompt
 ########################################
-BSHTPROMPT="${BASHORTCUT_LINUX_DIR}/.bsht_prompt"
+BSHTPROMPT="${BASHORTCUT_BSHT_DIR}/prompt.sh"
 if [ -f "${BSHTPROMPT}" ]; then
-    # shellcheck source="${BASHORTCUT_LINUX_DIR}/.bsht_prompt"
+    # shellcheck source="${BASHORTCUT_BSHT_DIR}/prompt.sh"
     . "${BSHTPROMPT}"
 fi
 

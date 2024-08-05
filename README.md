@@ -57,7 +57,7 @@ The BSHT profile is a set of Prompt, Aliases and some Development Tools configur
 the terminal experience. This is the BSHT profile inking file in OS. It is included in the `.bashrc` file.
 
 <p align="center">
-    <img src="linux/BSHT.png" width="500" />
+    <img src="bsht/BSHT.png" width="500" />
 </p>
 <p align="center">
    <span style="color: #D724FF; font-size: 11px">BSHT profile, with the Prompt, using Aliases, in a Tmux session</span>
@@ -80,9 +80,9 @@ profile:
 - sign depends on git status
 - **$** is the same color as the terminal text (Foreground) or red on error
 - colors are customizable in
-  the [.bsht_prompt](https://github.com/Ambre-io/bashortcut/blob/main/linux/.bsht_prompt#L148) file
+  the [prompt.sh](https://github.com/Ambre-io/bashortcut/blob/main/bsht/prompt.sh#L148) file
 - you can add the old `<user>@<computer name>` part in
-  the [.bsht_prompt](https://github.com/Ambre-io/bashortcut/blob/main/linux/.bsht_prompt#L148) file
+  the [prompt.sh](https://github.com/Ambre-io/bashortcut/blob/main/bsht/prompt.sh#L148) file
 
 ### 💨 Aliases
 
@@ -93,7 +93,7 @@ The main goal is to follow the flow of ideas. I liked it so much, I instantly cr
 There are now more than **120 Aliases** in the BSHT profile. To learn them you can:
 
 - use `oops` in a terminal using BSHT profile
-- read them in the [.bsht_aliases](https://github.com/Ambre-io/bashortcut/blob/main/linux/.bsht_aliases) file
+- read them in the [aliases.sh](https://github.com/Ambre-io/bashortcut/blob/main/bsht/aliases.sh) file
 
 Then, when an alias becomme to big or too complex, it evolves into a command.
 

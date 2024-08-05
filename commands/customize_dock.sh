@@ -65,8 +65,8 @@ if [[ ${reply} =~ ^[Yy]$ ]]; then
 
     echo "Plank dock icon size set to ${icon_size}."
 
-    # # shellcheck source=linux/utils
-    #. "${LINUXUTILS}"
+    # # shellcheck source=bsht/utils.sh
+    #. "${BSHTUTILS}"
     # FIXME askexe "- Icon Zoom 130?" argument seems to not exists
     # FIXME askexe "- Disable Auto-Hide?" argument seems to not exists
 

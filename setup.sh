@@ -19,15 +19,15 @@ EOF
 
 SETUP=$(command -v -- "${0}")
 SETUPPATH=$(cd -P -- "$(dirname -- "${SETUP}")" && pwd -P)
-LINUXPATHS="${SETUPPATH}/linux/paths"
-LINUXUTILS="${SETUPPATH}/linux/utils"
+BSHTPATHS="${SETUPPATH}/bsht/paths.sh"
+BSHTUTILS="${SETUPPATH}/bsht/utils.sh"
 [ ! -d "${SETUPPATH}" ] && echo "Directory ${SETUPPATH} DOES NOT exists." && exit 1
-[ ! -f "${LINUXPATHS}" ] && echo "File ${LINUXPATHS} DOES NOT exists." exit 1
-[ ! -f "${LINUXUTILS}" ] && echo "File ${LINUXUTILS} DOES NOT exists." exit 1
-# shellcheck source=linux/paths
-. "${LINUXPATHS}"
-# shellcheck source=linux/utils
-. "${LINUXUTILS}"
+[ ! -f "${BSHTPATHS}" ] && echo "File ${BSHTPATHS} DOES NOT exists." exit 1
+[ ! -f "${BSHTUTILS}" ] && echo "File ${BSHTUTILS} DOES NOT exists." exit 1
+# shellcheck source=bsht/paths.sh
+. "${BSHTPATHS}"
+# shellcheck source=bsht/utils.sh
+. "${BSHTUTILS}"
 
 ########################################
 # Update

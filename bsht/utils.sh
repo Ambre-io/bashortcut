@@ -1,4 +1,4 @@
-#!/bin/bash
+#! /bin/bash
 
 askexe() {
 	local question="$1"
@@ -11,4 +11,5 @@ askexe() {
 		eval "$command"
 	fi
 }
+
 alias askexe="askexe"

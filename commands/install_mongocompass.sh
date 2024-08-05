@@ -13,7 +13,7 @@ if [ ! -x "$(command -v mongo-compass)" ]; then
 		# Get latest version
 		mongocompass_latestversion=$(curl -s https://api.github.com/repos/mongodb-js/compass/releases/latest | jq -r '.tag_name' | sed 's/^v//')
 		# URI
-		# FIXME dpkg-deb: error: 'mongodb-compass-1.43.4-linux-x64.deb' is not a Debian format archive
+		# FIXME dpkg-deb: error: 'mongodb-compass-1.43.4-bsht-x64.deb' is not a Debian format archive
 		download_uri="https://downloads.mongodb.com/compass/mongodb-compass-${mongocompass_latestversion}-linux-x64.deb"
 		# Download
 		curl -LO ${download_uri}

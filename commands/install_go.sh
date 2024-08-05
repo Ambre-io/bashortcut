@@ -14,7 +14,7 @@ if [[ ${reply} =~ ^[Yy]$ ]]; then
 	# Exctract
 	sudo tar -C /usr/local -xzf "./${archive_filename}"
 	rm "./${archive_filename}"
-	# Export (also done in linux/.bsht_profile)
+	# Export (also done in bsht/profile.sh)
 	export PATH=$PATH:/usr/local/go/bin
 	# Done
 	echo "Go installed: go"

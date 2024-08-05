@@ -18,11 +18,11 @@ fi
 ########################################
 SETUP=$(command -v -- "${0}")
 SETUPPATH=$(cd -P -- "$(dirname -- "${SETUP}")" && pwd -P)
-LINUXPATHS="${SETUPPATH}/linux/paths"
+BSHTPATHS="${SETUPPATH}/bsht/paths.sh"
 [ ! -d "${SETUPPATH}" ] && echo "Directory ${SETUPPATH} DOES NOT exists." && exit 1
-[ ! -f "${LINUXPATHS}" ] && echo "File ${LINUXPATHS} DOES NOT exists." exit 1
-# shellcheck source=linux/paths
-. "${LINUXPATHS}"
+[ ! -f "${BSHTPATHS}" ] && echo "File ${BSHTPATHS} DOES NOT exists." exit 1
+# shellcheck source=bsht/paths.sh
+. "${BSHTPATHS}"
 
 ########################################
 # Deleting tmux symlink

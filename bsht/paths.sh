@@ -5,9 +5,9 @@
 ########################################
 BASHRC="${HOME}/.bashrc" # entry point
 BASHORTCUT="${HOME}/bashortcut"
-BASHORTCUT_LINUX_DIR="${BASHORTCUT}/linux"
+BASHORTCUT_BSHT_DIR="${BASHORTCUT}/bsht"
 BASHORTCUT_COMMANDS_DIR="${BASHORTCUT}/commands"
-BSHT_PROFILE="${BASHORTCUT_LINUX_DIR}/.bsht_profile" # main bsht file
+BSHT_PROFILE="${BASHORTCUT_BSHT_DIR}/profile.sh" # main bsht file
 TMUXCONF_SOURCE="${BASHORTCUT}/tmux/.tmux.conf" # tmux configuration file
 TMUXCONF_TARGET="${HOME}/.tmux.conf" # created by setup.sh
 
@@ -17,7 +17,7 @@ TMUXCONF_TARGET="${HOME}/.tmux.conf" # created by setup.sh
 IE=0
 [ ! -f "${BASHRC}" ] && echo "File ${BASHRC} DOES NOT exists."
 [ ! -d "${BASHORTCUT}" ] && echo "Directory ${BASHORTCUT} DOES NOT exists. You should go in ${HOME} and clone https://github.com/guiklimek/bashortcut.git." && IE=1
-[ ! -d "${BASHORTCUT_LINUX_DIR}" ] && echo "Directory ${BASHORTCUT_LINUX_DIR} DOES NOT exists." && IE=1
+[ ! -d "${BASHORTCUT_BSHT_DIR}" ] && echo "Directory ${BASHORTCUT_BSHT_DIR} DOES NOT exists." && IE=1
 [ ! -d "${BASHORTCUT_COMMANDS_DIR}" ] && echo "Directory ${BASHORTCUT_COMMANDS_DIR} DOES NOT exists." && IE=1
 [ ! -f "${BSHT_PROFILE}" ] && echo "File ${BSHT_PROFILE} DOES NOT exists." && IE=1
 [ ! -f "${TMUXCONF_SOURCE}" ] && echo "File ${TMUXCONF_SOURCE} DOES NOT exists." && IE=1
@@ -34,7 +34,7 @@ fi
 
 export BASHRC
 export BASHORTCUT
-export BASHORTCUT_LINUX_DIR
+export BASHORTCUT_BSHT_DIR
 export BASHORTCUT_COMMANDS_DIR
 export BSHT_PROFILE
 export TMUXCONF_SOURCE

@@ -10,8 +10,15 @@ if [[ ${reply} =~ ^[Yy]$ ]]; then
 
 EOF
 
-    # shellcheck source=linux/utils
-    . "${LINUXUTILS}"
+    ########################################
+    # * Paths
+    ########################################
+    BASEPATH="${HOME}/bashortcut/bsht"
+    BSHTUTILS="${BASEPATH}/utils.sh"
+    [ ! -d "${BASEPATH}" ] && echo "Directory ${BASEPATH} DOES NOT exists." exit 1
+    [ ! -f "${BSHTUTILS}" ] && echo "File ${BSHTUTILS} DOES NOT exists." exit 1
+    # shellcheck source=bsht/utils.sh
+    . "${BSHTUTILS}"
 
     askexe "- Reduce Mouse Speed?" "gsettings set org.gnome.desktop.peripherals.mouse speed -0.6"
 
