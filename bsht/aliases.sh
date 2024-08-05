@@ -403,9 +403,9 @@ alias clrimg="exiftool -all="
 ########################################
 function oeoe() {
     if [ "${#}" -lt 1 ]; then
-        echo "it's: ^^"
+        echo "^^"
     else
-        echo "it's: ${*} :)"
+        echo "Why ${*}? :)"
     fi
 }
 alias oeoe=oeoe
