@@ -10,30 +10,33 @@ if [[ ${reply} =~ ^[Yy]$ ]]; then
 
 EOF
 
-    ask_exe "- Reduce Mouse Speed?" "gsettings set org.gnome.desktop.peripherals.mouse speed -0.6"
+    # shellcheck source=linux/utils
+    . "${LINUXUTILS}"
 
-    ask_exe "- Activate Over-Amplification?" "gsettings set org.gnome.desktop.sound allow-volume-above-100-percent true"
+    askexe "- Reduce Mouse Speed?" "gsettings set org.gnome.desktop.peripherals.mouse speed -0.6"
 
-    ask_exe "- Create ${HOME}/App/ folder (used for installed applications)?" "[ ! -d ${HOME}/App ] && mkdir ${HOME}/App"
+    askexe "- Activate Over-Amplification?" "gsettings set org.gnome.desktop.sound allow-volume-above-100-percent true"
 
-    ask_exe "- Create ${HOME}/Projects/ folder (used for cloned repositories)?" "[ ! -d ${HOME}/Projects ] && mkdir ${HOME}/Projects"
+    askexe "- Create ${HOME}/App/ folder (used for installed applications)?" "[ ! -d ${HOME}/App ] && mkdir ${HOME}/App"
+
+    askexe "- Create ${HOME}/Projects/ folder (used for cloned repositories)?" "[ ! -d ${HOME}/Projects ] && mkdir ${HOME}/Projects"
 
     # FIXME: this is not working
-    ask_exe "- Pin App/ folder in file explorer?" "[ ! -d ${HOME}/App ] && sed -i '1s/^/file:\/\/\/${HOME}\/App App\n/' ${HOME}/.config/gtk-3.0/bookmarks"
+    askexe "- Pin App/ folder in file explorer?" "[ ! -d ${HOME}/App ] && sed -i '1s/^/file:\/\/\/${HOME}\/App App\n/' ${HOME}/.config/gtk-3.0/bookmarks"
 
-    ask_exe "- Switch Power Mode to Performance?" "powerprofilesctl set performance"
+    askexe "- Switch Power Mode to Performance?" "powerprofilesctl set performance"
 
-    ask_exe "- Deactivate Screen Blank?" "gsettings set org.gnome.desktop.session idle-delay 0"
+    askexe "- Deactivate Screen Blank?" "gsettings set org.gnome.desktop.session idle-delay 0"
 
-    ask_exe "- Deactivate Automatic Power Saver?" "gsettings set org.gnome.settings-daemon.plugins.power power-saver-profile-on-low-battery false"
+    askexe "- Deactivate Automatic Power Saver?" "gsettings set org.gnome.settings-daemon.plugins.power power-saver-profile-on-low-battery false"
 
-    ask_exe "- Deactivate Automatic Suspend?" "gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-battery-type 'nothing' && gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-type 'nothing'"
+    askexe "- Deactivate Automatic Suspend?" "gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-battery-type 'nothing' && gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-type 'nothing'"
 
-    ask_exe "- Deactivate Power Button Behavior?" "gsettings set org.gnome.settings-daemon.plugins.power power-button-action 'nothing'"
+    askexe "- Deactivate Power Button Behavior?" "gsettings set org.gnome.settings-daemon.plugins.power power-button-action 'nothing'"
 
-    ask_exe "- Deactivate Automatic Screen Lock?" "gsettings set org.gnome.desktop.screensaver lock-enabled false"
+    askexe "- Deactivate Automatic Screen Lock?" "gsettings set org.gnome.desktop.screensaver lock-enabled false"
 
-    ask_exe "- Deactive Unicode Code Point ctrl+shift+u?" 'sudo apt install ibus && gsettings set org.freedesktop.ibus.panel.emoji unicode-hotkey "@as []"'
+    askexe "- Deactive Unicode Code Point ctrl+shift+u?" 'sudo apt install ibus && gsettings set org.freedesktop.ibus.panel.emoji unicode-hotkey "@as []"'
 
     echo "------------------------------------------"
     read -p "- Do you want to bind Volume Mute on PrtSc, Volume Down on ScrLk and Volume Up on Pause buttons? [Y/n] " -r reply
@@ -67,5 +70,5 @@ EOL
         chmod +x "${HOME}/.config/autostart/xmodmap.desktop"
     fi
 
-    [ ! -f "${HOME}/notes" ] && ask_exe "- Create a notes file?" "touch ${HOME}/notes"
+    [ ! -f "${HOME}/notes" ] && askexe "- Create a notes file?" "touch ${HOME}/notes"
 fi

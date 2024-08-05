@@ -7,6 +7,8 @@ LINUXPATHS="${HOME}/bashortcut/linux/paths"
 [ ! -f "${LINUXPATHS}" ] && echo "File ${LINUXPATHS} DOES NOT exists." exit 1
 # shellcheck source=paths
 . "${LINUXPATHS}"
+# shellcheck source=linux/utils
+. "${LINUXUTILS}"
 
 ########################################
 # * BSHT profile
@@ -29,7 +31,7 @@ fi
 
 EOF
 
-	ask_exe "See .bashrc content?" "cat ${BASHRC}"
+	askexe "See .bashrc content?" "cat ${BASHRC}"
 
 	echo "Nice! Open a new terminal or exec:"
 	echo "cd ${HOME} && source ${BASHRC}"

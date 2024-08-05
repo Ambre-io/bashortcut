@@ -8,23 +8,6 @@ cat <<EOF
 
 EOF
 
-
-########################################
-# UTILS
-########################################
-
-ask_exe() {
-	local question="$1"
-	local command="$2"
-
-	echo "------------------------------------------"
-	read -p "$question [Y/n] " -r reply
-	echo "------------------------------------------"
-	if [[ ${reply} =~ ^[Yy]$ ]]; then
-		eval "$command"
-	fi
-}
-
 ########################################
 # INCLUDE PATHS
 ########################################
@@ -37,10 +20,14 @@ EOF
 SETUP=$(command -v -- "${0}")
 SETUPPATH=$(cd -P -- "$(dirname -- "${SETUP}")" && pwd -P)
 LINUXPATHS="${SETUPPATH}/linux/paths"
+LINUXUTILS="${SETUPPATH}/linux/utils"
 [ ! -d "${SETUPPATH}" ] && echo "Directory ${SETUPPATH} DOES NOT exists." && exit 1
 [ ! -f "${LINUXPATHS}" ] && echo "File ${LINUXPATHS} DOES NOT exists." exit 1
+[ ! -f "${LINUXUTILS}" ] && echo "File ${LINUXUTILS} DOES NOT exists." exit 1
 # shellcheck source=linux/paths
 . "${LINUXPATHS}"
+# shellcheck source=linux/utils
+. "${LINUXUTILS}"
 
 ########################################
 # Update
@@ -52,13 +39,13 @@ sudo apt update
 # CUSTOMIZE OS
 ########################################
 
-source "${COMMANDS_PATH}/customize_os.sh"
+. "${BASHORTCUT_COMMANDS_DIR}/customize_os.sh"
 
 ########################################
 # CUSTOMIZE DOCK
 ########################################
 
-source "${COMMANDS_PATH}/customize_dock.sh"
+. "${BASHORTCUT_COMMANDS_DIR}/customize_dock.sh"
 
 ########################################
 # INSTALL TOOLS
@@ -70,40 +57,40 @@ cat <<EOF
 EOF
 
 # Curl
-source "${COMMANDS_PATH}/install_curl.sh"
+. "${BASHORTCUT_COMMANDS_DIR}/install_curl.sh"
 
 # Tmux
-source "${COMMANDS_PATH}/install_tmux.sh"
+. "${BASHORTCUT_COMMANDS_DIR}/install_tmux.sh"
 
 # Git
-source "${COMMANDS_PATH}/install_git.sh"
+. "${BASHORTCUT_COMMANDS_DIR}/install_git.sh"
 
 # Gedit
-source "${COMMANDS_PATH}/install_gedit.sh"
+. "${BASHORTCUT_COMMANDS_DIR}/install_gedit.sh"
 
 # Docker
-source "${COMMANDS_PATH}/install_docker.sh"
+. "${BASHORTCUT_COMMANDS_DIR}/install_docker.sh"
 
 # Spotify
-source "${COMMANDS_PATH}/install_spotify.sh"
+. "${BASHORTCUT_COMMANDS_DIR}/install_spotify.sh"
 
 # JetBrains Toolbox
-source "${COMMANDS_PATH}/install_jetbrains_toolbox.sh"
+. "${BASHORTCUT_COMMANDS_DIR}/install_jetbrains_toolbox.sh"
 
 # VSCode
-source "${COMMANDS_PATH}/install_vscode.sh"
+. "${BASHORTCUT_COMMANDS_DIR}/install_vscode.sh"
 
 # Go
-source "${COMMANDS_PATH}/install_go.sh"
+. "${BASHORTCUT_COMMANDS_DIR}/install_go.sh"
 
 # Nvm
-source "${COMMANDS_PATH}/install_nvm.sh"
+. "${BASHORTCUT_COMMANDS_DIR}/install_nvm.sh"
 
 # Mongo-Compass
-source "${COMMANDS_PATH}/install_mongocompass.sh"
+. "${BASHORTCUT_COMMANDS_DIR}/install_mongocompass.sh"
 
 # DBeaver
-source "${COMMANDS_PATH}/install_dbeaver.sh"
+. "${BASHORTCUT_COMMANDS_DIR}/install_dbeaver.sh"
 
 ########################################
 # INSTALL BASHORTCUT OS LAYER
@@ -114,4 +101,4 @@ cat <<EOF
 
 EOF
 
-source "${COMMANDS_PATH}/install_bsht_profile.sh"
+. "${BASHORTCUT_COMMANDS_DIR}/install_bsht_profile.sh"
