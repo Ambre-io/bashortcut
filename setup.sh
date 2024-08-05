@@ -30,6 +30,7 @@ BSHTPATHS="${SETUPPATH}/bsht/paths.sh"
 ########################################
 
 sudo apt update
+sudo apt upgrade
 
 ########################################
 # CUSTOMIZE OS
