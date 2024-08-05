@@ -76,13 +76,11 @@ profile:
 ʙsʜᴛ</span><span style="color:#8CFF00FF"><span style="color:#55c6e7">[12:12:34]</span><span style="color:#55c6e7">~
 /bashortcut</span><span style="color:#8CFF00FF">(main)↑</span> $
 
-- branch and sign color depend on git status
-- sign depends on git status
+- Branch and sign color depend on git status
+- Sign depends on git status
 - **$** is the same color as the terminal text (Foreground) or red on error
-- colors are customizable in
-  the [prompt.sh](https://github.com/Ambre-io/bashortcut/blob/main/bsht/prompt.sh#L147) file
-- you can add the old `<user>@<computer name>` part in
-  the [prompt.sh](https://github.com/Ambre-io/bashortcut/blob/main/bsht/prompt.sh#L147) file
+- Colors are customizable with the profile
+- Python virtual environment name is displayed next to the time if activated
 
 ### 💨 Aliases
 
