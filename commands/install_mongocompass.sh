@@ -11,19 +11,27 @@ if [ ! -x "$(command -v mongo-compass)" ]; then
 			sudo apt install -y jq
 		fi
 		# Get latest version
-		mongocompass_latestversion=$(curl -s https://api.github.com/repos/mongodb-js/compass/releases/latest | jq -r '.tag_name' | sed 's/^v//')
-		# URI
-		# FIXME dpkg-deb: error: 'mongodb-compass-1.43.4-bsht-x64.deb' is not a Debian format archive
-		download_uri="https://downloads.mongodb.com/compass/mongodb-compass-${mongocompass_latestversion}-linux-x64.deb"
-		# Download
-		curl -LO ${download_uri}
-		# Install (debian like)
-		sudo dpkg -i mongodb-compass-${mongocompass_latestversion}-linux-x64.deb
-		# Fix Broken Dependencies
-		sudo apt-get install -f -y
-		# Clean
-		rm "./mongodb-compass-${mongocompass_latestversion}-linux-x64.deb"
-		# Done
-		echo "Mongo-Compass installed: mongodb-compass"
+		VERSION=$(curl -s https://api.github.com/repos/mongodb-js/compass/releases/latest | jq -r '.tag_name' | sed 's/^v//')
+		DEB_FILE="mongodb-compass_${VERSION}_amd64.deb"
+        DOWNLOAD_URL="https://downloads.mongodb.com/compass/${DEB_FILE}"
+
+        # Step 1: Download the MongoDB Compass .deb file
+        echo "Downloading MongoDB Compass version ${VERSION}..."
+        wget $DOWNLOAD_URL -O /tmp/$DEB_FILE
+
+        # Step 2: Install the downloaded .deb package
+        echo "Installing MongoDB Compass..."
+        sudo dpkg -i /tmp/$DEB_FILE
+
+        # Step 3: Fix any missing dependencies
+        echo "Fixing missing dependencies..."
+        sudo apt-get install -f -y
+
+        # Step 4: Clean up
+        echo "Cleaning up..."
+        rm /tmp/$DEB_FILE
+
+        # Step 5: Launch MongoDB Compass
+        echo "MongoDB Compass installed. You can launch it by searching in your applications menu or by running 'mongodb-compass'."
 	fi
 fi
