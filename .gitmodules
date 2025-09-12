@@ -1,0 +1,3 @@
+[submodule "tmux/bashortcut-sessions"]
+	path = tmux/bashortcut-sessions
+	url = git@github.com:Ambre-io/bashortcut-sessions.git
