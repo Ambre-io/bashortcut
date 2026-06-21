@@ -372,6 +372,39 @@ alias ppvg="pipenv graph"
 alias ppvip="pipenv run pip install"
 alias ppvi="pipenv install -r requirements.txt"
 
+pipenvlist() {
+  local b="$HOME/.local/share/virtualenvs"
+  local venv name proj w=0
+  # first pass: find longest name for alignment
+  for venv in "$b"/*/; do
+    [[ -d "$venv" ]] || continue
+    name=$(basename "$venv"); (( ${#name} > w )) && w=${#name}
+  done
+  # second pass: print
+  for venv in "$b"/*/; do
+    [[ -d "$venv" ]] || continue
+    name=$(basename "$venv")
+    if [[ -f "$venv/.project" ]]; then proj=$(<"$venv/.project"); else proj="(no .project)"; fi
+    printf '%-*s  %s\n' "$w" "$name" "$proj"
+  done
+}
+alias ppvl=pipenvlist
+
+pipenvrm() {
+  local b="$HOME/.local/share/virtualenvs"
+  (( $# )) || { echo "Usage: pipenv-rm <name> [name...]"; return 1; }
+  local name
+  for name in "$@"; do
+    if [[ -d "$b/$name" ]]; then
+      rm -rf "$b/$name" && echo "✓ removed $name"
+    else
+      echo "✗ not found: $name"
+    fi
+  done
+}
+alias ppvd=pipenvrm
+
+
 alias ppvup="ppl && ppupgradeall && ppfreezer && ppvi" # equivalent to 'ncu -u' (npm-check-update to upgrade every packages)
 
 ########################################
